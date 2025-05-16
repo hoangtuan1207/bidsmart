@@ -69,7 +69,7 @@ export default function Home() {
       </div>
       <ClientLogos />
       <StatsCommitment />
-      {/* <GlobalReach /> */}
+      <GlobalReach />
     </>
   );
 }
