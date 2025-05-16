@@ -5,6 +5,7 @@ import clsx from "clsx";
 import ClientLogos from "./components/Clients";
 import StatsCommitment from "./components/Commitment";
 import GlobalReach from "./components/GlobalReach";
+import WhyUs from "./components/WhyUs";
 
 export default function Home() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -37,10 +38,11 @@ export default function Home() {
         >
           <div className="w-full md:w-1/2">
             <h1 className="text-5xl md:text-6xl font-extrabold leading-tight text-black">
-              More Revenue   <br /> Less Effort <br />
+              More Revenue <br /> Less Effort <br />
             </h1>
             <p className="text-gray-600 mt-5 text-lg md:text-xl">
-              Bidsmart connects your ad spaces with smarter delivery, higher fill rates, and stronger returns — automatically.
+              Bidsmart connects your ad spaces with smarter delivery, higher
+              fill rates, and stronger returns — automatically.
             </p>
 
             <div className="mt-8 flex flex-col sm:flex-row gap-4">
@@ -69,7 +71,8 @@ export default function Home() {
       </div>
       <ClientLogos />
       <StatsCommitment />
-      {/* <GlobalReach /> */}
+      <WhyUs />
+      <GlobalReach />
     </>
   );
 }

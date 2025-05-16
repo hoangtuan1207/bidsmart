@@ -9,9 +9,12 @@ export default function Navbar() {
   return (
     <header className="w-full px-6 py-4 flex items-center justify-between bg-white shadow-sm relative z-50">
       {/* Logo */}
-      <div className="flex items-center space-x-2">
-        <div className="w-4 h-4 bg-blue-500 rounded-full" />
-        <span className="font-bold text-lg text-black">Bidsmart Logo</span>
+      <div className="flex items-center">
+        <img
+          src="/images/bid-1.png"
+          alt="Bidsmart Logo"
+          className="w-20 h-20 object-contain scale-[1.5]"
+        />
       </div>
 
       {/* Desktop menu */}
