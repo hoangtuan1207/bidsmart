@@ -13,7 +13,7 @@ export default function GlobalReach() {
             <span className="text-gray-900">Presence</span>
           </h2>
           <p className="mt-6 text-gray-600 text-lg leading-relaxed">
-            We provide services to our customers around the Globe.
+             A global network, seamless service.
           </p>
           <button className="mt-8 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg shadow-md transition">
             Get Started
