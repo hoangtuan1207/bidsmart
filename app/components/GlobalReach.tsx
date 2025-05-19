@@ -4,15 +4,30 @@ import Image from 'next/image';
 export default function GlobalReach() {
   return (
     <section className="bg-white py-20">
-      <div className="max-w-7xl mx-auto px-6 text-center flex flex-col items-center">
-        {/* Map Image Centered */}
-        <div className="w-full max-w-4xl mb-12">
+      <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-10">
+        {/* Left: Text Content */}
+        <div className="w-full md:w-1/3 text-left">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+            Our Global
+            <br />
+            <span className="text-gray-900">Presence</span>
+          </h2>
+          <p className="mt-6 text-gray-600 text-lg leading-relaxed">
+            We provide services to our customers around the Globe.
+          </p>
+          <button className="mt-8 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg shadow-md transition">
+            Get Started
+          </button>
+        </div>
+
+        {/* Right: Map Image */}
+        <div className="w-full md:w-2/3 relative aspect-[2/1] group">
           <Image
-            src="/images/map.png" // Đặt đúng tên ảnh trong thư mục public
+            src="/images/map-3.png"
             alt="Global Reach Map"
-            width={800}
-            height={400}
-            className="mx-auto w-full h-auto"
+            fill
+            className="object-contain transition-transform duration-300 group-hover:scale-105"
+            sizes="(max-width: 768px) 100vw, 800px"
           />
         </div>
       </div>
