@@ -6,6 +6,7 @@ import ClientLogos from "./components/Clients";
 import StatsCommitment from "./components/Commitment";
 import GlobalReach from "./components/GlobalReach";
 import WhyUs from "./components/WhyUs";
+import OurWorkVideo from "./components/OurWork";
 
 export default function Home() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -72,6 +73,7 @@ export default function Home() {
       <ClientLogos />
       <StatsCommitment />
       <WhyUs />
+      <OurWorkVideo />
       <GlobalReach />
     </>
   );
