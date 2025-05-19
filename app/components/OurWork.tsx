@@ -37,7 +37,7 @@ export default function OurWorkVideo() {
       <p className="text-gray-500 text-lg mb-10">A glimpse of our portfolio</p>
 
       <div className="max-w-4xl mx-auto">
-        <div className="rounded-3xl overflow-hidden shadow-2xl border border-gray-200">
+        <div className="rounded-3xl overflow-hidden border border-gray-200">
           <div className="relative aspect-video bg-black">
             <video
               ref={videoRef}
