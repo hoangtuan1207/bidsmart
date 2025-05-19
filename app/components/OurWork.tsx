@@ -42,6 +42,7 @@ export default function OurWorkVideo() {
             <video
               ref={videoRef}
               controls
+              loop
               muted // cần thiết để autoplay không bị block
               playsInline // hỗ trợ autoplay trong mobile Safari
               className="w-full h-full object-cover"
