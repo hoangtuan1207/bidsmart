@@ -61,7 +61,7 @@ const benefits: Benefit[] = [
 const WhyUs: FC = () => {
   return (
     <section className="bg-white text-white py-16 px-4 md:px-12">
-      <h2 className="text-3xl font-bold  mb-12 text-black">Why BidSmarts?</h2>
+      <h2 className="text-3xl font-bold  mb-12 text-black">WHY BidSmarts?</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
         {benefits.map((benefit, index) => (
           <div

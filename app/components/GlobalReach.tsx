@@ -23,7 +23,7 @@ export default function GlobalReach() {
         {/* Right: Map Image */}
         <div className="w-full md:w-2/3 relative aspect-[2/1] group">
           <Image
-            src="/images/map-3.png"
+            src="/images/map.png"
             alt="Global Reach Map"
             fill
             className="object-contain transition-transform duration-300 group-hover:scale-105"
@@ -34,3 +34,4 @@ export default function GlobalReach() {
     </section>
   );
 }
+
