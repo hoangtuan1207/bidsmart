@@ -37,18 +37,10 @@ export default function FloatingAdVideo({ onClose }: { onClose: () => void }) {
 
   return (
     <>
-      {/* Normal position */}
       <div
         ref={containerRef}
         className="relative bg-black rounded-xl overflow-hidden w-[640px] mx-auto"
       >
-        {/* <AdVideoUI
-          videoRef={videoRef}
-          showSkip={showSkip}
-          timeLeft={timeLeft}
-          onClose={onClose}
-          videoSrc={"/videos/mockup-video.mp4"}
-        /> */}
         <video
           ref={videoRef}
           controls
@@ -62,25 +54,6 @@ export default function FloatingAdVideo({ onClose }: { onClose: () => void }) {
           Your browser does not support the video tag.
         </video>
       </div>
-
-      {/* Floating minimized version */}
-      {/* {isFloating && (
-        <div
-          className={clsx(
-            "fixed bottom-4 right-4 w-72 z-50 shadow-lg rounded-xl overflow-hidden transition-all duration-300",
-            isFloating ? "opacity-100" : "opacity-0 pointer-events-none"
-          )}
-        >
-          <AdVideoUI
-            videoRef={videoRef}
-            showSkip={showSkip}
-            timeLeft={timeLeft}
-            onClose={onClose}
-            videoSrc={"/videos/mockup-video.mp4"}
-          />
-        </div>
-      )} */}
     </>
   );
 }
-

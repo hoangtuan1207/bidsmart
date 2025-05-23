@@ -46,8 +46,8 @@ export default function FeedPage() {
 
   return (
     <div className="min-h-screen bg-[#f3f4f6] p-4 md:p-8 flex justify-center">
-      <div className="w-full max-w-7xl flex gap-6">
-        {/* Main content */}
+      <div className="w-full max-w-7xl flex flex-col lg:flex-row gap-6">
+        {/* Left Sidebar */}
         <div className="hidden lg:block w-[320px] space-y-4">
           {[...Array(20)].map((_, i) => (
             <div key={i} className="bg-white rounded-xl p-4 shadow space-y-2">
@@ -58,14 +58,13 @@ export default function FeedPage() {
           ))}
         </div>
 
-        <div className="flex-1 space-y-6">
-          {/* Ad section */}
-          {[...Array(1)].map((_, i) => (
-            <PostSkeleton key={i} />
-          ))}
+        {/* Center content */}
+        <div className="w-full lg:flex-1 space-y-6">
+          <PostSkeleton />
+
           <div ref={adContainerRef} className="flex justify-center">
             {showAdUI ? (
-              <div className="bg-white rounded-xl shadow w-[640px]">
+              <div className="bg-white rounded-xl shadow w-full max-w-[640px]">
                 <AdVideoUI
                   videoRef={videoRef}
                   timeLeft={timeLeft}
@@ -75,13 +74,12 @@ export default function FeedPage() {
                 />
               </div>
             ) : showFloatingAd ? (
-              <div className="bg-white rounded-xl shadow w-[640px]">
+              <div className="bg-white rounded-xl shadow w-full max-w-[640px]">
                 <FloatingAdVideo onClose={() => setShowFloatingAd(false)} />
               </div>
             ) : null}
           </div>
 
-          {/* Posts */}
           {[...Array(8)].map((_, i) => (
             <PostSkeleton key={i} />
           ))}
@@ -99,17 +97,14 @@ export default function FeedPage() {
         </div>
       </div>
 
-      {/* Floating video bottom-right */}
+      {/* Floating Ad Video */}
       {isFloating && showAdUI && (
         <div className="fixed bottom-4 right-4 w-72 z-50 shadow-lg rounded-xl overflow-hidden transition-all duration-300">
           <AdVideoUI
             videoRef={videoRef}
             showSkip={timeLeft <= 0}
             timeLeft={timeLeft}
-            onClose={() => {
-              setShowAdUI(false);
-              setShowFloatingAd(true);
-            }}
+            onClose={handleAdClose}
             videoSrc="/videos/mockup-video.mp4"
           />
         </div>

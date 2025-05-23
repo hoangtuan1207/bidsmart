@@ -7,7 +7,7 @@ type NavbarProps = {
   scrollToWork: () => void;
   scrollToClients: () => void;
   scrollToAboutUs: () => void;
-  openPopup: () => void; // 👈 thêm prop để trigger popup
+  openPopup: () => void;
 };
 
 export default function Navbar({
@@ -29,39 +29,59 @@ export default function Navbar({
         />
       </div>
 
-      {/* CENTER: Navigation menu */}
+      {/* Desktop menu */}
       <nav className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center space-x-10 text-sm font-semibold text-black whitespace-nowrap">
-        <button
-          onClick={scrollToWork}
-          className="hover:text-blue-600 transition"
-        >
+        <button onClick={scrollToWork} className="hover:text-blue-600 transition">
           Our Work
         </button>
-
-        <button
-          onClick={scrollToClients}
-          className="hover:text-blue-600 transition"
-        >
+        <button onClick={scrollToClients} className="hover:text-blue-600 transition">
           Partners
         </button>
-
-        <button
-          onClick={scrollToAboutUs}
-          className="hover:text-blue-600 transition"
-        >
+        <button onClick={scrollToAboutUs} className="hover:text-blue-600 transition">
           About Us
         </button>
       </nav>
 
-      {/* CTA Button */}
-      <div className="flex items-center">
+      {/* CTA desktop */}
+      <div className="hidden md:flex items-center">
         <button
           onClick={openPopup}
-          className="hidden md:inline-block px-5 py-2 text-sm font-semibold text-white bg-blue-600 rounded-full hover:bg-blue-700 transition"
+          className="px-5 py-2 text-sm font-semibold text-white bg-blue-600 rounded-full hover:bg-blue-700 transition"
         >
           Get Started
         </button>
       </div>
+
+      {/* Hamburger button */}
+      <div className="md:hidden">
+        <button onClick={() => setIsOpen(!isOpen)} className="text-black">
+          {isOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
+      </div>
+
+      {/* Mobile menu */}
+      {isOpen && (
+        <div className="absolute top-16 left-0 w-full bg-white shadow-md flex flex-col items-start p-6 space-y-4 md:hidden z-40">
+          <button onClick={() => { setIsOpen(false); scrollToWork(); }} className="text-black font-medium">
+            Our Work
+          </button>
+          <button onClick={() => { setIsOpen(false); scrollToClients(); }} className="text-black font-medium">
+            Partners
+          </button>
+          <button onClick={() => { setIsOpen(false); scrollToAboutUs(); }} className="text-black font-medium">
+            About Us
+          </button>
+          <button
+            onClick={() => {
+              setIsOpen(false);
+              openPopup();
+            }}
+            className="mt-4 w-full bg-blue-600 text-white font-semibold px-4 py-2 rounded-full"
+          >
+            Get Started
+          </button>
+        </div>
+      )}
     </header>
   );
 }
