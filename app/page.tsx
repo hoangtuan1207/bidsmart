@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import clsx from "clsx";
@@ -8,11 +8,16 @@ import GlobalReach from "./components/GlobalReach";
 import WhyUs from "./components/WhyUs";
 import OurWorkVideo from "./components/OurWork";
 import ContactPopup from "./components/ContactPopup";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 export default function Home() {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const ourWorkRef = useRef<HTMLDivElement>(null);
+  const clientsRef = useRef<HTMLDivElement>(null);
+  const aboutUsRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
-  const [showPopup, setShowPopup] = useState(false); // 👈 popup state
+  const [showPopup, setShowPopup] = useState(false);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -31,6 +36,19 @@ export default function Home() {
 
   return (
     <>
+      <Navbar
+        scrollToWork={() =>
+          ourWorkRef.current?.scrollIntoView({ behavior: "smooth" })
+        }
+        scrollToClients={() =>
+          clientsRef.current?.scrollIntoView({ behavior: "smooth" })
+        }
+        scrollToAboutUs={() =>
+          aboutUsRef.current?.scrollIntoView({ behavior: "smooth" })
+        }
+        openPopup={() => setShowPopup(true)}
+      />
+
       {/* Hero Section */}
       <div className="flex-grow bg-white pt-28 px-6 flex justify-center">
         <section
@@ -46,12 +64,12 @@ export default function Home() {
               More Revenue <br /> Less Effort <br />
             </h1>
             <p className="text-gray-600 mt-5 text-lg md:text-xl">
-              Bidsmart connects your ad spaces with smarter delivery, higher
+              Bid Smart connects your ad spaces with smarter delivery, higher
               fill rates, and stronger returns — automatically.
             </p>
             <div className="mt-8 flex flex-col sm:flex-row gap-4">
               <button
-                onClick={() => setShowPopup(true)} // 👈 Trigger
+                onClick={() => setShowPopup(true)}
                 className="bg-blue-600 text-white px-6 py-3 rounded-full font-semibold text-base hover:bg-blue-700 transition"
               >
                 Get a Demo
@@ -76,12 +94,24 @@ export default function Home() {
       {/* Popup */}
       <ContactPopup isOpen={showPopup} onClose={() => setShowPopup(false)} />
 
-      {/* Other sections */}
-      <ClientLogos />
       <StatsCommitment />
+
+      {/* 👇 Scroll to this when clicking "Clients" in navbar */}
+      <div ref={clientsRef}>
+        <ClientLogos />
+      </div>
+
       <WhyUs />
-      <OurWorkVideo />
-      <GlobalReach />
+
+      {/* 👇 Scroll to this when clicking "Our Work" in navbar */}
+      <div ref={ourWorkRef}>
+        <OurWorkVideo />
+      </div>
+
+      <div ref={aboutUsRef}>
+        <GlobalReach onOpenPopup={() => setShowPopup(true)} />
+        <Footer />
+      </div>
     </>
   );
 }

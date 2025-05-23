@@ -1,21 +1,26 @@
-'use client';
-import Image from 'next/image';
+"use client";
+import Image from "next/image";
 
-export default function GlobalReach() {
+export default function GlobalReach({
+  onOpenPopup,
+}: {
+  onOpenPopup: () => void;
+}) {
   return (
     <section className="bg-white py-20">
       <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-10">
         {/* Left: Text Content */}
         <div className="w-full md:w-1/3 text-left">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-            Our Global
-            <br />
-            <span className="text-gray-900">Presence</span>
+            Our Global Presence
           </h2>
           <p className="mt-6 text-gray-600 text-lg leading-relaxed">
-             A global network, seamless service.
+            A global network, seamless service.
           </p>
-          <button className="mt-8 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg shadow-md transition">
+          <button
+            onClick={onOpenPopup}
+            className="mt-8 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg shadow-md transition"
+          >
             Get Started
           </button>
         </div>
@@ -34,4 +39,3 @@ export default function GlobalReach() {
     </section>
   );
 }
-

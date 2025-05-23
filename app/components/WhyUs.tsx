@@ -61,22 +61,23 @@ const benefits: Benefit[] = [
 const WhyUs: FC = () => {
   return (
     <section className="bg-white text-white py-16 px-4 md:px-12">
-      <h2 className="text-3xl font-bold  mb-12 text-black">WHY BidSmarts?</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
-        {benefits.map((benefit, index) => (
-          <div
-            key={index}
-            className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow"
-          >
-            <div className="text-4xl mb-4 text-black">{benefit.icon}</div>
-            <h3 className="text-xl font-semibold mb-2 text-black">
-              {benefit.title}
-            </h3>
-            <p className="text-sm text-black">
-              {benefit.description}
-            </p>
-          </div>
-        ))}
+      <div className="max-w-6xl mx-auto">
+        <h2 className="text-3xl font-bold mb-12 text-black">WHY BidSmarts?</h2>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {benefits.map((benefit, index) => (
+            <div
+              key={index}
+              className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow"
+            >
+              <div className="text-4xl mb-4 text-black">{benefit.icon}</div>
+              <h3 className="text-xl font-semibold mb-2 text-black">
+                {benefit.title}
+              </h3>
+              <p className="text-sm text-black">{benefit.description}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

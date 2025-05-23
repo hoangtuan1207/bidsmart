@@ -26,7 +26,7 @@ function AnimatedNumber({ to, shouldAnimate }: { to: number; shouldAnimate: bool
 
     let start = 0;
     const end = to;
-    const duration = 1000;
+    const duration = 2500;
     const stepTime = Math.abs(Math.floor(duration / end));
 
     const timer = setInterval(() => {

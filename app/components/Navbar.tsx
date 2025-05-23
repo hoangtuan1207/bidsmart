@@ -1,9 +1,21 @@
 "use client";
-import Link from "next/link";
+
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 
-export default function Navbar() {
+type NavbarProps = {
+  scrollToWork: () => void;
+  scrollToClients: () => void;
+  scrollToAboutUs: () => void;
+  openPopup: () => void; // 👈 thêm prop để trigger popup
+};
+
+export default function Navbar({
+  scrollToWork,
+  scrollToClients,
+  scrollToAboutUs,
+  openPopup,
+}: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -11,33 +23,44 @@ export default function Navbar() {
       {/* Logo */}
       <div className="flex items-center">
         <img
-          src="/images/icon-1.png"
+          src="/images/icon-3.png"
           alt="Bidsmart Logo"
-          className="w-40 h-14 object-contain" // tăng size logo
+          className="w-40 h-20 object-contain"
         />
       </div>
 
-      {/* CENTER: Navigation menu - centered absolutely */}
+      {/* CENTER: Navigation menu */}
       <nav className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center space-x-10 text-sm font-semibold text-black whitespace-nowrap">
-        <Link href="#how-it-works" className="hover:text-blue-600 transition">
-          How It Works
-        </Link>
-        <Link href="#our-work" className="hover:text-blue-600 transition">
+        <button
+          onClick={scrollToWork}
+          className="hover:text-blue-600 transition"
+        >
           Our Work
-        </Link>
-        <Link href="#about-us" className="hover:text-blue-600 transition">
+        </button>
+
+        <button
+          onClick={scrollToClients}
+          className="hover:text-blue-600 transition"
+        >
+          Partners
+        </button>
+
+        <button
+          onClick={scrollToAboutUs}
+          className="hover:text-blue-600 transition"
+        >
           About Us
-        </Link>
+        </button>
       </nav>
 
-      {/* RIGHT: CTA */}
+      {/* CTA Button */}
       <div className="flex items-center">
-        <Link
-          href="#book-call"
+        <button
+          onClick={openPopup}
           className="hidden md:inline-block px-5 py-2 text-sm font-semibold text-white bg-blue-600 rounded-full hover:bg-blue-700 transition"
         >
           Get Started
-        </Link>
+        </button>
       </div>
     </header>
   );

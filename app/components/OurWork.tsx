@@ -1,7 +1,8 @@
+// components/OurWork.tsx
 "use client";
-import { useRef, useEffect, useState } from "react";
+import { useEffect, useRef, useState, forwardRef } from "react";
 
-export default function OurWorkVideo() {
+const OurWorkVideo = forwardRef<HTMLElement>((_, ref) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [hasPlayed, setHasPlayed] = useState(false);
@@ -11,12 +12,10 @@ export default function OurWorkVideo() {
       ([entry]) => {
         if (entry.isIntersecting && !hasPlayed) {
           videoRef.current?.play();
-          setHasPlayed(true); // chỉ play 1 lần
+          setHasPlayed(true);
         }
       },
-      {
-        threshold: 0.5, // 50% video visible
-      }
+      { threshold: 0.5 }
     );
 
     if (containerRef.current) {
@@ -24,19 +23,13 @@ export default function OurWorkVideo() {
     }
 
     return () => {
-      if (containerRef.current) {
-        observer.unobserve(containerRef.current);
-      }
+      if (containerRef.current) observer.unobserve(containerRef.current);
     };
   }, [hasPlayed]);
 
   return (
-    <section className="py-20 px-4 bg-white text-center" ref={containerRef}>
-      <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900">
-        Our Work
-      </h2>
-
-      {/* Live Demo button */}
+    <section ref={ref} className="py-20 px-4 bg-white text-center">
+      <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900">Our Work</h2>
       <div className="mt-4 mb-10">
         <button
           className="bg-blue-600 text-white px-6 py-2 rounded-full font-medium hover:bg-blue-700 transition"
@@ -45,15 +38,13 @@ export default function OurWorkVideo() {
           Live Demo
         </button>
       </div>
-
-      {/* Video section */}
-      <div className="max-w-4xl mx-auto">
+      <div ref={containerRef} className="max-w-4xl mx-auto">
         <video
           ref={videoRef}
           controls
-          className="w-full rounded-2xl shadow-lg"
+          muted
           preload="metadata"
-          muted // 👉 quan trọng để video có thể autoplay trên hầu hết browser
+          className="w-full rounded-2xl shadow-lg"
         >
           <source src="/videos/video-main.mp4" type="video/mp4" />
           Your browser does not support the video tag.
@@ -61,4 +52,7 @@ export default function OurWorkVideo() {
       </div>
     </section>
   );
-}
+});
+
+OurWorkVideo.displayName = "OurWorkVideo";
+export default OurWorkVideo;
