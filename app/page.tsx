@@ -124,13 +124,14 @@ export default function Home() {
       <WhyUs />
 
       {/* 👇 Scroll to this when clicking "Our Work" in navbar */}
-       <div ref={ourWorkRef}>
+      <div ref={ourWorkRef}>
         <OurWorkVideo />
       </div>
 
       <div ref={aboutUsRef}>
         <GlobalReach onOpenPopup={() => setShowPopup(true)} />
-        <Footer />
+        {/* <Footer onOpenPopup={() => setShowPopup(true)} /> */}
+        {/* <Footer /> */}
       </div>
     </>
   );
