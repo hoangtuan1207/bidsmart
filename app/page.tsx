@@ -10,6 +10,7 @@ import OurWorkVideo from "./components/OurWork";
 import ContactPopup from "./components/ContactPopup";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import { motion } from "framer-motion";
 
 export default function Home() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -50,7 +51,7 @@ export default function Home() {
       />
 
       {/* Hero Section */}
-      <div className="flex-grow bg-white pt-28 px-6 flex justify-center">
+      <div className="flex-grow bg-white pt-15 px-6 flex justify-center">
         <section
           ref={sectionRef}
           className={clsx(
@@ -58,15 +59,34 @@ export default function Home() {
             { "opacity-100": isVisible }
           )}
         >
-          {/* Left Text */}
           <div className="w-full md:w-1/2">
             <h1 className="text-5xl md:text-6xl font-extrabold leading-tight text-black">
-              More Revenue <br /> Less Effort <br />
+              More <span className="text-blue-600">Revenue</span> <br />
+              Less <span className="text-blue-600">Effort</span>
             </h1>
-            <p className="text-gray-600 mt-5 text-lg md:text-xl">
+            <p className="text-gray-600 mt-5 text-xl md:text-2xl font-mono">
               Bid Smart connects your ad spaces with smarter delivery, higher
               fill rates, and stronger returns — automatically.
             </p>
+
+            {/* 🎯 Thêm đoạn motion ở đây */}
+            <motion.div
+              className="mt-6 flex flex-wrap items-center gap-3"
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.5 }}
+            >
+              <span className="bg-blue-100 text-blue-700 text-xs px-3 py-1 rounded-full font-semibold">
+                #AdTech
+              </span>
+              <span className="bg-green-100 text-green-700 text-xs px-3 py-1 rounded-full font-semibold">
+                #SmartFill
+              </span>
+              <span className="bg-yellow-100 text-yellow-800 text-xs px-3 py-1 rounded-full font-semibold">
+                #RealTimeBidding
+              </span>
+            </motion.div>
+
             <div className="mt-8 flex flex-col sm:flex-row gap-4">
               <button
                 onClick={() => setShowPopup(true)}
@@ -80,7 +100,7 @@ export default function Home() {
           {/* Right Image */}
           <div className="w-full md:w-1/2 flex justify-center md:justify-end">
             <Image
-              src="/images/hero-people.png"
+              src="/images/hero.png"
               alt="Hero People Collage"
               width={500}
               height={500}
@@ -104,7 +124,7 @@ export default function Home() {
       <WhyUs />
 
       {/* 👇 Scroll to this when clicking "Our Work" in navbar */}
-      <div ref={ourWorkRef}>
+       <div ref={ourWorkRef}>
         <OurWorkVideo />
       </div>
 

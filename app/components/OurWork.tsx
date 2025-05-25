@@ -1,6 +1,7 @@
 // components/OurWork.tsx
 "use client";
 import { useEffect, useRef, useState, forwardRef } from "react";
+import VideoSlider from "./VideoSlider";
 
 const OurWorkVideo = forwardRef<HTMLElement>((_, ref) => {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -28,17 +29,21 @@ const OurWorkVideo = forwardRef<HTMLElement>((_, ref) => {
   }, [hasPlayed]);
 
   return (
-    <section ref={ref} className="py-20 px-4 bg-white text-center">
-      <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900">Our Work</h2>
+    <section ref={ref} className="py-10 px-4 bg-white text-center">
+      <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 font-mono">
+        Our Work
+      </h2>
       <div className="mt-4 mb-10">
         <button
-          className="bg-blue-600 text-white px-6 py-2 rounded-full font-medium hover:bg-blue-700 transition"
-          onClick={() => window.open("/live-demo", "_blank")}
+          className="bg-blue-600 text-white px-6 py-2 rounded-full font-medium hover:bg-blue-700 transition font-mono"
+          onClick={() => {}}
         >
-          Live Demo
+          Quick Demo
         </button>
       </div>
-      <div ref={containerRef} className="max-w-4xl mx-auto">
+
+      <VideoSlider />
+      {/* <div ref={containerRef} className="max-w-4xl mx-auto">
         <video
           ref={videoRef}
           controls
@@ -49,7 +54,7 @@ const OurWorkVideo = forwardRef<HTMLElement>((_, ref) => {
           <source src="/videos/video-main.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
-      </div>
+      </div> */}
     </section>
   );
 });
