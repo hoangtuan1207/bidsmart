@@ -28,7 +28,7 @@ const OurWorkVideo = forwardRef<HTMLElement>((_, ref) => {
   }, [hasPlayed]);
 
   return (
-    <section ref={ref} className="py-16 px-4 bg-white text-center">
+    <section ref={ref} className="pt-10 px-4 bg-white text-center">
       <h2 className="text-5xl md:text-6xl font-extrabold text-gray-900 font-mono">
         Our Work
       </h2>

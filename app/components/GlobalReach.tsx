@@ -10,7 +10,7 @@ interface GlobalReachProps {
 const GlobalReach: FC<GlobalReachProps> = ({ onOpenPopup }) => {
   return (
     <section className="bg-white py-20">
-      <div className="max-w-5xl mx-auto px-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-10">
+      <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-10">
         {/* Left: Text Content */}
         <div className="w-full md:w-1/2 text-left space-y-6">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
