@@ -222,6 +222,25 @@ export default function StatsSection() {
     >
       <div className="max-w-6xl mx-auto flex flex-wrap justify-between text-center">
         {statsData.map((stat, index) => (
+          // <motion.div
+          //   key={index}
+          //   className="flex-1 min-w-[120px] flex flex-col items-center px-4 border-r last:border-none border-gray-200"
+          //   initial={{ opacity: 0, y: 40 }}
+          //   whileInView={{ opacity: 1, y: 0 }}
+          //   transition={{ duration: 0.5, delay: index * 0.1 }}
+          //   viewport={{ once: true }}
+          // >
+          //   {/* 👇 Icon Wrapper */}
+          //   {/* <div className="p-4 rounded-full bg-white shadow-md ring-2 ring-blue-200 ring-offset-2"> */}
+          //   {/* <div className="p-4 rounded-full bg-white shadow-md"> */}
+          //   <div className="w-10 h-12 flex items-center justify-center mb-3">
+          //     {stat.icon}
+          //   </div>
+          //   <h3 className="text-5xl font-extrabold text-gray-900 font-mono mt-2">
+          //     <AnimatedNumber to={stat.value} shouldAnimate={inView} />
+          //   </h3>
+          //   <p className="text-sm text-gray-600 mt-1">{stat.label}</p>
+          // </motion.div>
           <motion.div
             key={index}
             className="flex-1 min-w-[120px] flex flex-col items-center px-4 border-r last:border-none border-gray-200"
@@ -230,11 +249,10 @@ export default function StatsSection() {
             transition={{ duration: 0.5, delay: index * 0.1 }}
             viewport={{ once: true }}
           >
-            {/* 👇 Icon Wrapper */}
-           <div className="p-4 rounded-full bg-white shadow-md ring-2 ring-blue-200 ring-offset-2">
+            <div className="w-12 h-12 flex items-center justify-center mb-3 text-3xl">
               {stat.icon}
             </div>
-            <h3 className="text-3xl font-extrabold text-gray-900 font-mono mt-2">
+            <h3 className="text-5xl font-extrabold text-gray-900 font-mono">
               <AnimatedNumber to={stat.value} shouldAnimate={inView} />
             </h3>
             <p className="text-sm text-gray-600 mt-1">{stat.label}</p>

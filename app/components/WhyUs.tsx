@@ -62,7 +62,7 @@ const WhyUs: FC = () => {
   return (
     <section className="bg-white text-white py-10 px-4 md:px-12">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-3xl font-extrabold mb-12 text-black font-mono">
+        <h2 className="text-5xl font-extrabold mb-12 text-black font-mono">
           WHY BidSmart?
         </h2>
 

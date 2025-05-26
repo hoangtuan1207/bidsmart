@@ -1,4 +1,3 @@
-// components/OurWork.tsx
 "use client";
 import { useEffect, useRef, useState, forwardRef } from "react";
 import VideoSlider from "./VideoSlider";
@@ -29,32 +28,20 @@ const OurWorkVideo = forwardRef<HTMLElement>((_, ref) => {
   }, [hasPlayed]);
 
   return (
-    <section ref={ref} className="py-10 px-4 bg-white text-center">
-      <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 font-mono">
+    <section ref={ref} className="py-16 px-4 bg-white text-center">
+      <h2 className="text-5xl md:text-6xl font-extrabold text-gray-900 font-mono">
         Our Work
       </h2>
-      <div className="mt-4 mb-10">
-        <button
-          className="bg-blue-600 text-white px-6 py-2 rounded-full font-medium hover:bg-blue-700 transition font-mono"
-          onClick={() => {}}
-        >
-          Quick Demo
-        </button>
+
+      <div className="mt-3">
+        <span className="inline-block px-5 py-2 rounded-full text-white font-semibold text-lg tracking-wide shadow-lg bg-gradient-to-r from-indigo-500 via-blue-500 to-cyan-400 animate-glow font-mono">
+          🚀 BS Video
+        </span>
       </div>
 
-      <VideoSlider />
-      {/* <div ref={containerRef} className="max-w-4xl mx-auto">
-        <video
-          ref={videoRef}
-          controls
-          muted
-          preload="metadata"
-          className="w-full rounded-2xl shadow-lg"
-        >
-          <source src="/videos/video-main.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-      </div> */}
+      <div className="mt-10">
+        <VideoSlider />
+      </div>
     </section>
   );
 });

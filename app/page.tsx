@@ -60,12 +60,12 @@ export default function Home() {
           )}
         >
           <div className="w-full md:w-1/2">
-            <h1 className="text-5xl md:text-6xl font-extrabold leading-tight text-black">
+            <h1 className="text-6xl md:text-7xl font-extrabold leading-tight text-black">
               More <span className="text-blue-600">Revenue</span> <br />
               Less <span className="text-blue-600">Effort</span>
             </h1>
-            <p className="text-gray-600 mt-5 text-xl md:text-2xl font-mono">
-              Bid Smart connects your ad spaces with smarter delivery, higher
+            <p className="text-gray-600 mt-5 text-base md:text-xl font-mono">
+              BidSmart connects your ad spaces with smarter delivery, higher
               fill rates, and stronger returns — automatically.
             </p>
 

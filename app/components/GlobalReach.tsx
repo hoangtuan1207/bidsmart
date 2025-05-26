@@ -22,7 +22,7 @@ const GlobalReach: FC<GlobalReachProps> = ({ onOpenPopup }) => {
 
           <div className="space-y-2 text-gray-700">
             <p className="text-lg">
-              <strong>Company:</strong> Bid Smart
+              <strong>Company:</strong> BidSmart
             </p>
             <p className="text-lg">
               <strong>Email:</strong>{" "}
