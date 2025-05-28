@@ -1,7 +1,6 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
-import clsx from "clsx";
 import ClientLogos from "./components/Clients";
 import StatsCommitment from "./components/Commitment";
 import GlobalReach from "./components/GlobalReach";
@@ -13,27 +12,10 @@ import Footer from "./components/Footer";
 import { motion } from "framer-motion";
 
 export default function Home() {
-  const sectionRef = useRef<HTMLDivElement>(null);
   const ourWorkRef = useRef<HTMLDivElement>(null);
   const clientsRef = useRef<HTMLDivElement>(null);
   const aboutUsRef = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
-
-  useEffect(() => {
-    const section = sectionRef.current;
-    if (!section) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setIsVisible(true);
-      },
-      { threshold: 0.1 }
-    );
-
-    observer.observe(section);
-    return () => observer.disconnect();
-  }, []);
 
   return (
     <>
@@ -51,15 +33,15 @@ export default function Home() {
       />
 
       {/* Hero Section */}
-      <div className="flex-grow bg-white pt-15 px-6 flex justify-center">
-        <section
-          ref={sectionRef}
-          className={clsx(
-            "w-full max-w-[1200px] flex flex-col md:flex-row items-center justify-between gap-8 opacity-0 transition-opacity duration-1000",
-            { "opacity-100": isVisible }
-          )}
-        >
-          <div className="w-full md:w-1/2">
+      <div className="flex-grow bg-white pt-20 px-6 flex justify-center">
+        <section className="w-full max-w-[1200px] flex flex-col md:flex-row items-center justify-between gap-8">
+          <motion.div
+            className="w-full md:w-1/2"
+            initial={{ x: -100, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            viewport={{ once: true, amount: 0.4 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          >
             <h1 className="text-6xl md:text-7xl font-extrabold leading-tight text-black">
               More <span className="text-blue-600">Revenue</span> <br />
               Less <span className="text-blue-600">Effort</span>
@@ -69,11 +51,11 @@ export default function Home() {
               fill rates, and stronger returns — automatically.
             </p>
 
-            {/* 🎯 Thêm đoạn motion ở đây */}
             <motion.div
               className="mt-6 flex flex-wrap items-center gap-3"
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ delay: 0.3, duration: 0.5 }}
             >
               <span className="bg-blue-100 text-blue-700 text-xs px-3 py-1 rounded-full font-semibold">
@@ -95,10 +77,15 @@ export default function Home() {
                 Get a Demo
               </button>
             </div>
-          </div>
+          </motion.div>
 
-          {/* Right Image */}
-          <div className="w-full md:w-1/2 flex justify-center md:justify-end">
+          <motion.div
+            className="w-full md:w-1/2 flex justify-center md:justify-end"
+            initial={{ x: 100, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            viewport={{ once: true, amount: 0.4 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+          >
             <Image
               src="/images/hero.png"
               alt="Hero People Collage"
@@ -107,7 +94,7 @@ export default function Home() {
               className="w-full max-w-[400px] h-auto"
               priority
             />
-          </div>
+          </motion.div>
         </section>
       </div>
 
@@ -116,22 +103,18 @@ export default function Home() {
 
       <StatsCommitment />
 
-      {/* 👇 Scroll to this when clicking "Clients" in navbar */}
       <div ref={clientsRef}>
         <ClientLogos />
       </div>
 
       <WhyUs />
 
-      {/* 👇 Scroll to this when clicking "Our Work" in navbar */}
       <div ref={ourWorkRef}>
         <OurWorkVideo />
       </div>
 
       <div ref={aboutUsRef}>
         <GlobalReach onOpenPopup={() => setShowPopup(true)} />
-        {/* <Footer onOpenPopup={() => setShowPopup(true)} /> */}
-        {/* <Footer /> */}
       </div>
     </>
   );

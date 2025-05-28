@@ -60,28 +60,32 @@ const benefits: Benefit[] = [
 
 const WhyUs: FC = () => {
   return (
-    <section className="bg-white text-white py-10 px-4 md:px-12">
+    <section className="bg-white text-white py-14 px-4 md:px-12">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-5xl font-extrabold mb-12 text-black font-mono">
+        <h2 className="text-5xl font-extrabold mb-14 bg-clip-text bg-gradient-to-r text-black font-mono">
           WHY BidSmart?
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {benefits.map((benefit, index) => (
             <div
               key={index}
-              className="bg-white rounded-2xl p-6 shadow-md border border-gray-100 hover:border-blue-500 transition-all duration-300 group hover:shadow-xl"
+              className="bg-white rounded-2xl p-6 shadow-md border border-gray-100 hover:border-blue-500 hover:shadow-2xl transition-all duration-300 group hover:scale-[1.02]"
             >
               <div
                 className="text-5xl mb-4 transition-transform duration-300 group-hover:scale-110"
-                style={{ filter: "drop-shadow(0 0 4px #007BFF)" }}
+                style={{
+                  filter: "drop-shadow(0 0 5px rgba(0, 123, 255, 0.5))",
+                }}
               >
                 {benefit.icon}
               </div>
-              <h3 className="text-lg font-semibold mb-2 text-gray-900">
+              <h3 className="text-lg font-semibold mb-2 text-gray-900 group-hover:text-blue-600 transition-colors">
                 {benefit.title}
               </h3>
-              <p className="text-sm text-gray-600">{benefit.description}</p>
+              <p className="text-sm text-gray-600 leading-relaxed">
+                {benefit.description}
+              </p>
             </div>
           ))}
         </div>

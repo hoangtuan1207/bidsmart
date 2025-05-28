@@ -24,7 +24,7 @@ export default function ContactPopup({
         </button>
 
         {/* Form Title */}
-        <h2 className="text-center text-2xl font-bold mb-6">Work with us</h2>
+        {/* <h2 className="text-center text-2xl font-bold mb-6">Work with us</h2> */}
 
         {/* Contact Form */}
         <ContactForm onClose={onClose}/>

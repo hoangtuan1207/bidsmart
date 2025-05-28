@@ -1,9 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
 
 const logos = [
+  { src: "/1.png", alt: "smu" },
+  { src: "/2.png", alt: "nova" },
+  { src: "/3.png", alt: "mitacs" },
+  { src: "/google.svg", alt: "google" },
   { src: "/yeah1.svg", alt: "Yeah 1" },
   { src: "/vnexpress.svg", alt: "vnexpress" },
   { src: "/plo.svg", alt: "plo" },
@@ -29,7 +32,7 @@ export default function ClientLogos() {
     <section className="py-16 bg-[#e9e9e9] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4">
         <h2 className="text-4xl md:text-5xl font-semibold mb-10 text-center text-black font-mono">
-          Companies We Work With
+          Publishers We Work With
         </h2>
 
         <div className="relative w-full overflow-hidden">

@@ -1,56 +1,147 @@
 "use client";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
+import { FaWhatsapp, FaTelegramPlane } from "react-icons/fa";
+import {
+  HiOutlineUser,
+  HiOutlineEnvelope,
+  HiOutlineGlobeAlt,
+  HiOutlineMapPin,
+  HiOutlineChartBar,
+} from "react-icons/hi2";
+import { motion } from "framer-motion";
 
 export default function ContactForm({ onClose }: { onClose: () => void }) {
   const formRef = useRef<HTMLFormElement>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-
     if (!formRef.current) return;
 
+    setIsLoading(true);
     emailjs
       .sendForm(
-        "service_z5b4mcj",     // ✅ Service ID
-        "template_pxm33sh",    // ✅ Template ID
+        "service_z5b4mcj",
+        "template_pxm33sh",
         formRef.current,
-        "Hycjqz7ztQDXJh5pM"    // ✅ Public Key
+        "Hycjqz7ztQDXJh5pM"
       )
       .then(() => {
-        alert("Cám ơn bạn đã quan tâm! Chúng tôi sẽ liên lạc với bạn sớm nhất.");
+        alert(
+          "Cám ơn bạn đã quan tâm! Chúng tôi sẽ liên lạc với bạn sớm nhất."
+        );
         formRef.current?.reset();
-        onClose(); // ✅ đóng popup
+        onClose();
       })
       .catch((error) => {
         console.error("Send failed:", error);
         alert("Gửi không thành công. Vui lòng thử lại.");
-      });
+      })
+      .finally(() => setIsLoading(false));
   };
 
   return (
-    <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
+    <motion.form
+      ref={formRef}
+      onSubmit={handleSubmit}
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      className="max-w-xl w-full p-4 sm:p-6 space-y-6"
+    >
+      <h2 className="text-3xl font-bold text-center text-gray-800 mb-4">
+        🚀 Work with us
+      </h2>
+
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <input type="text" name="user_name" placeholder="Your Name" className="input-style" required />
-        <input type="email" name="user_email" placeholder="Your Email" className="input-style" required />
-        <input type="text" name="website" placeholder="Your Website/App URL" className="input-style" />
-        <input type="text" name="whatsapp" placeholder="Your WhatsApp" className="input-style" />
-        <input type="text" name="country" placeholder="Your Country" className="input-style" />
-        <input type="text" name="telegram" placeholder="Your Telegram No." className="input-style" />
-        <input
-          type="text"
-          name="page_views"
-          placeholder="Your Daily Page Views"
-          className="input-style col-span-1 sm:col-span-2"
-        />
+        {/* Name */}
+        <div className="relative w-full">
+          <HiOutlineUser className="absolute left-3 top-1/2 -translate-y-1/2 text-sky-500 text-[18px] pointer-events-none" />
+          <input
+            type="text"
+            name="user_name"
+            placeholder="Your Name"
+            className="input-style pl-14"
+            required
+          />
+        </div>
+
+        {/* Email */}
+        <div className="relative w-full">
+          <HiOutlineEnvelope className="absolute left-3 top-1/2 -translate-y-1/2 text-red-500 text-[18px] pointer-events-none" />
+          <input
+            type="email"
+            name="user_email"
+            placeholder="Your Email"
+            className="input-style pl-14"
+            required
+          />
+        </div>
+
+        {/* Website */}
+        <div className="relative w-full">
+          <HiOutlineGlobeAlt className="absolute left-3 top-1/2 -translate-y-1/2 text-indigo-500 text-[18px] pointer-events-none" />
+          <input
+            type="text"
+            name="website"
+            placeholder="Website/App URL"
+            className="input-style pl-14"
+          />
+        </div>
+
+        {/* WhatsApp */}
+        <div className="relative w-full">
+          <FaWhatsapp className="absolute left-3 top-1/2 -translate-y-1/2 text-green-500 text-[18px] pointer-events-none" />
+          <input
+            type="text"
+            name="whatsapp"
+            placeholder="WhatsApp"
+            className="input-style pl-14"
+          />
+        </div>
+
+        {/* Country */}
+        <div className="relative w-full">
+          <HiOutlineMapPin className="absolute left-3 top-1/2 -translate-y-1/2 text-orange-500 text-[18px] pointer-events-none" />
+          <input
+            type="text"
+            name="country"
+            placeholder="Country"
+            className="input-style pl-14"
+          />
+        </div>
+
+        {/* Telegram */}
+        <div className="relative w-full">
+          <FaTelegramPlane className="absolute left-3 top-1/2 -translate-y-1/2 text-blue-500 text-[18px] pointer-events-none" />
+          <input
+            type="text"
+            name="telegram"
+            placeholder="Telegram No."
+            className="input-style pl-14"
+          />
+        </div>
+
+        {/* Page Views */}
+        <div className="relative w-full sm:col-span-2">
+          <HiOutlineChartBar className="absolute left-3 top-1/2 -translate-y-1/2 text-purple-500 text-[18px] pointer-events-none" />
+          <input
+            type="text"
+            name="page_views"
+            placeholder="Daily Page Views"
+            className="input-style pl-14"
+          />
+        </div>
       </div>
 
       <button
         type="submit"
-        className="w-full bg-blue-600 text-white py-3 rounded-xl font-semibold hover:bg-blue-700 transition"
+        disabled={isLoading}
+        className="w-full bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white py-3 rounded-xl font-semibold shadow-md transition duration-300 disabled:opacity-60"
       >
-        Get Started
+        {isLoading ? "Sending..." : "✨ Get Started"}
       </button>
-    </form>
+    </motion.form>
   );
 }

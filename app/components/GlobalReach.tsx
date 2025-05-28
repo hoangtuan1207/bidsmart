@@ -1,6 +1,3 @@
-// components/GlobalReach.tsx
-"use client";
-
 import { FC } from "react";
 
 interface GlobalReachProps {
@@ -10,25 +7,27 @@ interface GlobalReachProps {
 const GlobalReach: FC<GlobalReachProps> = ({ onOpenPopup }) => {
   return (
     <section className="bg-white py-20">
-      <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-10">
+      <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-12">
         {/* Left: Text Content */}
-        <div className="w-full md:w-1/2 text-left space-y-6">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-            Get in Touch
+        <div className="w-full md:w-2/5 text-left space-y-6">
+          <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight">
+            <span>📍</span> Get in Touch
           </h2>
           <p className="text-gray-600 text-lg">
-            We’d love to hear from you. Reach out to us directly:
+            Whether you're nearby or across the world, we're here to
+            collaborate. Reach out and let's build something great together.
           </p>
 
-          <div className="space-y-2 text-gray-700">
-            <p className="text-lg">
-              <strong>Company:</strong> BidSmart
+          <div className="space-y-2 text-gray-800 text-base">
+            <p>
+              <span className="font-semibold">🏢 Company:</span>{" "}
+              <span className="text-gray-900">BidSmart</span>
             </p>
-            <p className="text-lg">
-              <strong>Email:</strong>{" "}
+            <p>
+              <span className="font-semibold">📧 Email:</span>{" "}
               <a
                 href="mailto:info@bidsmartca.com"
-                className="text-blue-600 hover:underline"
+                className="text-blue-600 font-medium hover:underline"
               >
                 info@bidsmartca.com
               </a>
@@ -37,19 +36,52 @@ const GlobalReach: FC<GlobalReachProps> = ({ onOpenPopup }) => {
 
           <button
             onClick={onOpenPopup}
-            className="mt-6 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg shadow transition"
+            className="mt-6 bg-blue-600 hover:bg-blue-700 text-white font-bold px-6 py-3 rounded-xl shadow-lg transition duration-300 ease-in-out transform hover:scale-105"
           >
-            Get Started
+            🚀 Get Started
           </button>
         </div>
 
-        {/* Right: Optional Illustration */}
-        <div className="w-full md:w-1/2 flex justify-center md:justify-end">
+        {/* Right: Map */}
+        <div className="relative w-full md:w-3/5 flex justify-center md:justify-end">
           <img
-            src="/images/bidsmart.png" // optional: change this path or remove this block if no image
-            alt="Contact Illustration"
-            className="max-w-sm w-full h-auto"
+            src="/images/hi-map.png"
+            alt="Global Locations Map"
+            className="w-full max-w-[800px] h-auto"
           />
+
+          {/* Halifax */}
+          <div className="absolute left-[12%] top-[30%] flex flex-col items-center space-y-1">
+            <div className="relative">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-yellow-400 opacity-75"></span>
+              <div className="relative w-4 h-4 bg-yellow-400 rounded-full z-10"></div>
+            </div>
+            <div className="bg-yellow-400 text-white text-sm px-3 py-1 rounded-full shadow-md">
+              Canada
+            </div>
+          </div>
+
+          {/* India */}
+          <div className="absolute left-[64%] top-[51%]  flex flex-col items-center space-y-1">
+            <div className="relative">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-lime-500 opacity-75"></span>
+              <div className="relative w-4 h-4 bg-lime-500 rounded-full z-10"></div>
+            </div>
+            <div className="bg-lime-500 text-white text-sm px-3 py-1 rounded-full shadow-md">
+              India
+            </div>
+          </div>
+
+          {/* Ho Chi Minh */}
+          <div className="absolute left-[70%] top-[58%] flex flex-col items-center space-y-1">
+            <div className="relative">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-pink-600 opacity-75"></span>
+              <div className="relative w-4 h-4 bg-pink-600 rounded-full z-10"></div>
+            </div>
+            <div className="bg-pink-600 text-white text-sm px-3 py-1 rounded-full shadow-md">
+              Viet Nam
+            </div>
+          </div>
         </div>
       </div>
     </section>

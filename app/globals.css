@@ -44,7 +44,7 @@ body {
 }
 
 .animate-scroll-x {
-  animation: scroll-x 20s linear infinite;
+  animation: scroll-x 35s linear infinite;
 }
 
 .input-style {
@@ -65,4 +65,10 @@ body {
 
 .animate-glow {
   animation: glow 2.5s ease-in-out infinite;
+}
+
+.input-style {
+  @apply w-full pl-14 pr-4 py-3 bg-white border border-gray-300 rounded-lg
+         placeholder-gray-500 text-sm focus:outline-none
+         focus:ring-2 focus:ring-blue-400 transition;
 }
