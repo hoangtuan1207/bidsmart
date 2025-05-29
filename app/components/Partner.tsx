@@ -26,7 +26,7 @@ export default function PartnerSection() {
           transition={{ duration: 0.5 }}
           className="text-3xl md:text-4xl font-semibold mb-10 text-center text-black font-mono"
         >
-          Partner We Work With
+          Partners We Work With
         </motion.h2>
 
         <motion.div
