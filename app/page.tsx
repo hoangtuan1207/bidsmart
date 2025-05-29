@@ -80,7 +80,7 @@ export default function Home() {
       <div className="flex-grow bg-white px-6 flex justify-center">
         <section
           ref={heroRef}
-          className="relative w-full bg-gradient-to-b from-white to-blue-50 py-24 px-4 sm:py-14 md:py-16 lg:py-20"
+          className="relative w-full bg-gradient-to-b from-white to-blue-50 py-24 px-4 sm:py-14 md:py-16 lg:py-15"
         >
           <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             {/* Left */}
@@ -139,13 +139,16 @@ export default function Home() {
       {/* Popup */}
       <ContactPopup isOpen={showPopup} onClose={() => setShowPopup(false)} />
 
-      <WhyUs />
+      <StatsCommitment />
 
       <div ref={clientsRef}>
-        <StatsCommitment />
+        <Publisher />
       </div>
+
+      <WhyUs />
+
       <Partner />
-      <Publisher />
+
       <div ref={ourWorkRef}>
         <OurWorkVideo />
       </div>
