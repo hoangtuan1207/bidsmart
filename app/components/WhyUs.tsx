@@ -1,9 +1,10 @@
 "use client";
 
 import { FC } from "react";
+import { motion } from "framer-motion";
 
 interface Benefit {
-  icon: React.ReactNode;
+  icon: string;
   title: string;
   description: string;
 }
@@ -60,22 +61,27 @@ const benefits: Benefit[] = [
 
 const WhyUs: FC = () => {
   return (
-    <section className="bg-white text-white py-14 px-4 md:px-12">
-      <div className="max-w-6xl mx-auto">
-        <h2 className="text-5xl font-extrabold mb-14 bg-clip-text bg-gradient-to-r text-black font-mono">
-          WHY BidSmart?
+    <section className="bg-white py-16 px-4 md:px-10">
+      <div className="max-w-7xl mx-auto">
+        <h2 className="text-4xl md:text-5xl font-extrabold mb-14 text-black text-center">
+          WHY <span className="text-blue-600">BidSmart?</span>
         </h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {benefits.map((benefit, index) => (
-            <div
+            <motion.div
               key={index}
-              className="bg-white rounded-2xl p-6 shadow-md border border-gray-100 hover:border-blue-500 hover:shadow-2xl transition-all duration-300 group hover:scale-[1.02]"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false, amount: 0.2 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              whileHover={{ scale: 1.03 }}
+              className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-xl hover:border-blue-500 transition-all group"
             >
               <div
                 className="text-5xl mb-4 transition-transform duration-300 group-hover:scale-110"
                 style={{
-                  filter: "drop-shadow(0 0 5px rgba(0, 123, 255, 0.5))",
+                  filter: "drop-shadow(0 1px 4px rgba(0, 123, 255, 0.4))",
                 }}
               >
                 {benefit.icon}
@@ -86,7 +92,7 @@ const WhyUs: FC = () => {
               <p className="text-sm text-gray-600 leading-relaxed">
                 {benefit.description}
               </p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

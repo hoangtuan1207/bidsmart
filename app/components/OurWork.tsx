@@ -32,14 +32,7 @@ const OurWorkVideo = forwardRef<HTMLElement>((_, ref) => {
       <h2 className="text-5xl md:text-6xl font-extrabold text-gray-900 font-mono">
         Our Work
       </h2>
-
-      <div className="mt-3">
-        <span className="inline-block px-5 py-2 rounded-full text-white font-semibold text-lg tracking-wide shadow-lg bg-gradient-to-r from-indigo-500 via-blue-500 to-cyan-400 animate-glow font-mono">
-          🚀 BS Video
-        </span>
-      </div>
-
-      <div className="mt-10">
+      <div className="mt-5">
         <VideoSlider />
       </div>
     </section>

@@ -35,7 +35,7 @@ export default function Navbar({
           Our Work
         </button>
         <button onClick={scrollToClients} className="hover:text-blue-600 transition">
-          Partners
+          Clients
         </button>
         <button onClick={scrollToAboutUs} className="hover:text-blue-600 transition">
           About Us

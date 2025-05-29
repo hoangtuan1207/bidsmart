@@ -6,7 +6,7 @@ interface GlobalReachProps {
 
 const GlobalReach: FC<GlobalReachProps> = ({ onOpenPopup }) => {
   return (
-    <section className="bg-white py-20">
+    <section className="bg-white pt-30 pb-10">
       <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-12">
         {/* Left: Text Content */}
         <div className="w-full md:w-2/5 text-left space-y-6">
@@ -51,7 +51,7 @@ const GlobalReach: FC<GlobalReachProps> = ({ onOpenPopup }) => {
           />
 
           {/* Halifax */}
-          <div className="absolute left-[12%] top-[30%] flex flex-col items-center space-y-1">
+          <div className="absolute left-[25%] top-[35%] flex flex-col items-center space-y-1">
             <div className="relative">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-yellow-400 opacity-75"></span>
               <div className="relative w-4 h-4 bg-yellow-400 rounded-full z-10"></div>

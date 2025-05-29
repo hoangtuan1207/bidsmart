@@ -1,21 +1,65 @@
 "use client";
-import { useRef, useState } from "react";
+
+import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
-import ClientLogos from "./components/Clients";
 import StatsCommitment from "./components/Commitment";
 import GlobalReach from "./components/GlobalReach";
 import WhyUs from "./components/WhyUs";
 import OurWorkVideo from "./components/OurWork";
 import ContactPopup from "./components/ContactPopup";
 import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
-import { motion } from "framer-motion";
+import Publisher from "./components/Publisher";
+import Partner from "./components/Partner";
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import { section } from "framer-motion/client";
 
 export default function Home() {
-  const ourWorkRef = useRef<HTMLDivElement>(null);
-  const clientsRef = useRef<HTMLDivElement>(null);
-  const aboutUsRef = useRef<HTMLDivElement>(null);
+  const ourWorkRef = useRef<HTMLDivElement | null>(null);
+  const clientsRef = useRef<HTMLDivElement | null>(null);
+  const aboutUsRef = useRef<HTMLDivElement | null>(null);
   const [showPopup, setShowPopup] = useState(false);
+  const partnerLogos = [
+    { src: "/1.png", alt: "SMU" },
+    { src: "/2.png", alt: "Nova Scotia" },
+    { src: "/3.png", alt: "Mitacs" },
+    { src: "/google.svg", alt: "Google" },
+  ];
+
+  const publisherLogos = [
+    { src: "/logoVietnamNet.svg", alt: "Vietnamnet" },
+    { src: "/plo.svg", alt: "PLO" },
+    { src: "/2sao.svg", alt: "2Sao" },
+    { src: "/yeah1.svg", alt: "Yeah1" },
+    { src: "/vnexpress.svg", alt: "VNExpress" },
+    // thêm nếu cần
+  ];
+  // Animation controls
+  const [heroRef, inView] = useInView({ threshold: 0.4 });
+  const controls = useAnimation();
+
+  useEffect(() => {
+    if (inView) {
+      controls.start("visible");
+    } else {
+      controls.start("hidden");
+    }
+  }, [inView, controls]);
+
+  const leftVariants = {
+    hidden: { x: -100, opacity: 0 },
+    visible: { x: 0, opacity: 1 },
+  };
+
+  const rightVariants = {
+    hidden: { x: 100, opacity: 0 },
+    visible: { x: 0, opacity: 1 },
+  };
+
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 10 },
+    visible: { opacity: 1, y: 0 },
+  };
 
   return (
     <>
@@ -33,86 +77,78 @@ export default function Home() {
       />
 
       {/* Hero Section */}
-      <div className="flex-grow bg-white pt-20 px-6 flex justify-center">
-        <section className="w-full max-w-[1200px] flex flex-col md:flex-row items-center justify-between gap-8">
-          <motion.div
-            className="w-full md:w-1/2"
-            initial={{ x: -100, opacity: 0 }}
-            whileInView={{ x: 0, opacity: 1 }}
-            viewport={{ once: true, amount: 0.4 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-          >
-            <h1 className="text-6xl md:text-7xl font-extrabold leading-tight text-black">
-              More <span className="text-blue-600">Revenue</span> <br />
-              Less <span className="text-blue-600">Effort</span>
-            </h1>
-            <p className="text-gray-600 mt-5 text-base md:text-xl font-mono">
-              BidSmart connects your ad spaces with smarter delivery, higher
-              fill rates, and stronger returns — automatically.
-            </p>
-
+      <div className="flex-grow bg-white px-6 flex justify-center">
+        <section
+          ref={heroRef}
+          className="relative w-full bg-gradient-to-b from-white to-blue-50 py-24 px-4 sm:py-14 md:py-16 lg:py-20"
+        >
+          <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            {/* Left */}
             <motion.div
-              className="mt-6 flex flex-wrap items-center gap-3"
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3, duration: 0.5 }}
+              variants={leftVariants}
+              initial="hidden"
+              animate={controls}
+              className="text-center md:text-left"
             >
-              <span className="bg-blue-100 text-blue-700 text-xs px-3 py-1 rounded-full font-semibold">
-                #AdTech
-              </span>
-              <span className="bg-green-100 text-green-700 text-xs px-3 py-1 rounded-full font-semibold">
-                #SmartFill
-              </span>
-              <span className="bg-yellow-100 text-yellow-800 text-xs px-3 py-1 rounded-full font-semibold">
-                #RealTimeBidding
-              </span>
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-tight text-gray-900">
+                More <span className="text-blue-600">Revenue</span>
+                <br />
+                Less <span className="text-blue-600">Effort</span>
+              </h1>
+              <p className="mt-6 text-gray-700 text-base md:text-lg lg:text-xl font-mono">
+                BidSmart connects your ad spaces with smarter delivery, higher
+                fill rates, and stronger returns — automatically.
+              </p>
+
+              <div className="mt-6 flex flex-wrap gap-3 justify-center md:justify-start">
+                <span className="bg-blue-100 text-blue-700 text-xs px-3 py-1 rounded-full font-semibold">
+                  #AdTech
+                </span>
+                <span className="bg-green-100 text-green-700 text-xs px-3 py-1 rounded-full font-semibold">
+                  #SmartFill
+                </span>
+                <span className="bg-yellow-100 text-yellow-800 text-xs px-3 py-1 rounded-full font-semibold">
+                  #RealTimeBidding
+                </span>
+              </div>
+
+              <div className="mt-8">
+                <button className="bg-blue-600 text-white px-6 py-3 rounded-full font-semibold text-base hover:bg-blue-700 transition">
+                  Get a Demo
+                </button>
+              </div>
             </motion.div>
 
-            <div className="mt-8 flex flex-col sm:flex-row gap-4">
-              <button
-                onClick={() => setShowPopup(true)}
-                className="bg-blue-600 text-white px-6 py-3 rounded-full font-semibold text-base hover:bg-blue-700 transition"
-              >
-                Get a Demo
-              </button>
-            </div>
-          </motion.div>
-
-          <motion.div
-            className="w-full md:w-1/2 flex justify-center md:justify-end"
-            initial={{ x: 100, opacity: 0 }}
-            whileInView={{ x: 0, opacity: 1 }}
-            viewport={{ once: true, amount: 0.4 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-          >
-            <Image
-              src="/images/hero.png"
-              alt="Hero People Collage"
-              width={500}
-              height={500}
-              className="w-full max-w-[400px] h-auto"
-              priority
-            />
-          </motion.div>
+            {/* Right */}
+            <motion.div
+              variants={rightVariants}
+              initial="hidden"
+              animate={controls}
+              className="flex justify-center md:justify-end"
+            >
+              <img
+                src="/images/hero.png"
+                alt="Hero Illustration"
+                className="w-full max-w-md md:max-w-lg lg:max-w-xl h-auto"
+              />
+            </motion.div>
+          </div>
         </section>
       </div>
 
       {/* Popup */}
       <ContactPopup isOpen={showPopup} onClose={() => setShowPopup(false)} />
 
-      <StatsCommitment />
-
-      <div ref={clientsRef}>
-        <ClientLogos />
-      </div>
-
       <WhyUs />
 
+      <div ref={clientsRef}>
+        <StatsCommitment />
+      </div>
+      <Partner />
+      <Publisher />
       <div ref={ourWorkRef}>
         <OurWorkVideo />
       </div>
-
       <div ref={aboutUsRef}>
         <GlobalReach onOpenPopup={() => setShowPopup(true)} />
       </div>
