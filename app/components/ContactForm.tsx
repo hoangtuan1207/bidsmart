@@ -22,10 +22,10 @@ export default function ContactForm({ onClose }: { onClose: () => void }) {
     setIsLoading(true);
     emailjs
       .sendForm(
-        "service_z5b4mcj",
-        "template_pxm33sh",
+        "service_5jpe53o",
+        "template_nwck1yd",
         formRef.current,
-        "Hycjqz7ztQDXJh5pM"
+        "MSFZ6yI9CrJtaZsWU"
       )
       .then(() => {
         alert(
