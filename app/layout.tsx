@@ -1,3 +1,4 @@
+import Script from "next/script";
 import "./globals.css";
 import type { Metadata } from "next";
 
@@ -16,6 +17,23 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="h-full">
+       <head>
+        {/* Google Analytics */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-0X2SZVQRK2"
+          strategy="afterInteractive"
+        />
+        <Script id="ga4-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-0X2SZVQRK2', {
+              page_path: window.location.pathname,
+            });
+          `}
+        </Script>
+      </head>
       <body className="min-h-screen flex flex-col bg-white overflow-x-hidden">
         {/* <Navbar /> */}
         <main className="flex-1">{children}</main>
