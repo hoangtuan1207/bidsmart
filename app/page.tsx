@@ -1,7 +1,6 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
-import Image from "next/image";
 import StatsCommitment from "./components/Commitment";
 import GlobalReach from "./components/GlobalReach";
 import WhyUs from "./components/WhyUs";
@@ -12,13 +11,13 @@ import Publisher from "./components/Publisher";
 import Partner from "./components/Partner";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { section } from "framer-motion/client";
 
 export default function Home() {
   const ourWorkRef = useRef<HTMLDivElement | null>(null);
   const clientsRef = useRef<HTMLDivElement | null>(null);
   const aboutUsRef = useRef<HTMLDivElement | null>(null);
   const [showPopup, setShowPopup] = useState(false);
+
   const partnerLogos = [
     { src: "/1.png", alt: "SMU" },
     { src: "/2.png", alt: "Nova Scotia" },
@@ -37,6 +36,7 @@ export default function Home() {
   // Animation controls
   const [heroRef, inView] = useInView({ threshold: 0.4 });
   const controls = useAnimation();
+  const [content, setContent] = useState<Record<string, string>>({});
 
   useEffect(() => {
     if (inView) {
@@ -44,6 +44,10 @@ export default function Home() {
     } else {
       controls.start("hidden");
     }
+    fetch("/api/landing")
+      .then((res) => res.json())
+      .then(setContent)
+      .catch(console.error);
   }, [inView, controls]);
 
   const leftVariants = {
@@ -91,7 +95,7 @@ export default function Home() {
               className="text-center md:text-left"
             >
               <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-tight text-gray-900">
-                More <span className="text-blue-600">Revenue</span>
+                {content.hero_title_1} <span className="text-blue-600">Revenue</span>
                 <br />
                 Less <span className="text-blue-600">Effort</span>
               </h1>
