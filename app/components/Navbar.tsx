@@ -50,37 +50,37 @@ export default function Navbar({
           onClick={scrollToWork}
           className="hover:text-blue-600 transition"
         >
-          {content.navbar_control_1}
+            {content.navbar_control_1 || "Our Service"}
         </button>
         <button
           onClick={scrollToClients}
           className="hover:text-blue-600 transition"
         >
-          {content.navbar_control_2}
+         {content.navbar_control_2 || "Clients"}
         </button>
         <button
           onClick={scrollToClients}
           className="hover:text-blue-600 transition"
         >
-          {content.navbar_control_3}
+        {content.navbar_control_3 || "Partners"}
         </button>
         <button
           onClick={scrollToClients}
           className="hover:text-blue-600 transition"
         >
-          {content.navbar_control_4}
+           {content.navbar_control_4 || "News"}
         </button>
         <button
           onClick={scrollToClients}
           className="hover:text-blue-600 transition"
         >
-          {content.navbar_control_5}
+            {content.navbar_control_5 || "Testimonial"}
         </button>
         <button
           onClick={scrollToAboutUs}
           className="hover:text-blue-600 transition"
         >
-          {content.navbar_control_6}
+        {content.navbar_control_6 || "About Us"}
         </button>
       </nav>
 
@@ -91,7 +91,7 @@ export default function Navbar({
             onClick={openPopup}
             className="px-5 py-2 text-sm font-semibold text-white bg-blue-600 rounded-full hover:bg-blue-700 transition"
           >
-            {content.navbar_btn}
+           {content.navbar_btn || "Get Started"}
           </button>
         </div>
       )}
