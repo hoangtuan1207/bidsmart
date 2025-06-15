@@ -2,7 +2,11 @@
 import { useEffect, useRef, useState, forwardRef } from "react";
 import VideoSlider from "./VideoSlider";
 
-const OurWorkVideo = forwardRef<HTMLElement>((_, ref) => {
+interface Props {
+  content: Record<string, any>;
+}
+
+const OurWorkVideo = forwardRef<HTMLElement, Props>(({ content }, ref) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [hasPlayed, setHasPlayed] = useState(false);
@@ -30,7 +34,7 @@ const OurWorkVideo = forwardRef<HTMLElement>((_, ref) => {
   return (
     <section ref={ref} className="pt-10 px-4 bg-white text-center">
       <h2 className="text-5xl md:text-6xl font-extrabold text-gray-900 font-mono">
-        Our Work
+        {content?.our_service_title ?? "Advertising Format"}
       </h2>
       <div className="mt-5">
         <VideoSlider />

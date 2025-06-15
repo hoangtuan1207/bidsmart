@@ -1,30 +1,19 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 
 const videos = [
-  {
-    src: "/videos/ads-1.MP4",
-    title: "🚀 BS Ads",
-  },
-  {
-    src: "/videos/native-ads.MP4",
-    title: "📰 BS Native Ads",
-  },
-  {
-    src: "/videos/banner.MP4",
-    title: "📊 BS Banner",
-  },
-  {
-    src: "/videos/video.MP4",
-    title: "🎥 BS Video",
-  },
+  { src: "/videos/ads-1.MP4", title: "🚀 Ads" },
+  { src: "/videos/native-ads.MP4", title: "📰 Native Ads" },
+  { src: "/videos/banner.MP4", title: "📊 Banner" },
+  { src: "/videos/video.MP4", title: "🎥 Video" },
 ];
 
 export default function VideoCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const DEFAULT_SPEED = 0.5;
 
   const handleNext = () => {
     setCurrentIndex((prev) => (prev + 1) % videos.length);
@@ -34,9 +23,19 @@ export default function VideoCarousel() {
     setCurrentIndex((prev) => (prev - 1 + videos.length) % videos.length);
   };
 
+  // 👇 Cập nhật playbackRate mỗi lần video change
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      if (videoRef.current) {
+        videoRef.current.playbackRate = DEFAULT_SPEED;
+      }
+    }, 50); // đợi 1 chút để đảm bảo video mounted
+
+    return () => clearTimeout(timeout);
+  }, [currentIndex]);
+
   return (
     <div className="max-w-6xl mx-auto flex flex-col items-center gap-6">
-      {/* Title */}
       <motion.span
         key={currentIndex}
         initial={{ opacity: 0, y: -10 }}
@@ -48,7 +47,6 @@ export default function VideoCarousel() {
       </motion.span>
 
       <div className="flex items-center justify-center gap-6">
-        {/* Left Mini Video */}
         <div className="w-[160px] opacity-40">
           {videos.length > 1 && (
             <>
@@ -71,28 +69,23 @@ export default function VideoCarousel() {
           )}
         </div>
 
-        {/* Main Video */}
         <div className="w-full max-w-[640px]">
           <div className="w-full max-w-[640px] aspect-video bg-black rounded-2xl shadow-lg overflow-hidden flex items-center justify-center">
             <div className="w-full max-w-[640px] aspect-video rounded-2xl shadow-lg bg-[#535353] p-2">
               <video
-                key={videos[currentIndex].src}
                 ref={videoRef}
                 src={videos[currentIndex].src}
                 muted
                 controls
                 autoPlay
                 preload="metadata"
-                onEnded={() => {
-                  setCurrentIndex((prev) => (prev + 1) % videos.length);
-                }}
+                onEnded={handleNext}
                 className="w-full h-full object-contain rounded-xl"
               />
             </div>
           </div>
         </div>
 
-        {/* Right Mini Video */}
         <div className="w-[160px] opacity-40">
           {videos.length > 1 && (
             <>

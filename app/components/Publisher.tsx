@@ -14,7 +14,7 @@ const logos = [
   { src: "/2sao.svg", alt: "2sao" },
 ];
 
-export default function Publisher() {
+export default function Publisher({ content }: { content: Record<string, any> }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { margin: "-100px" });
 
@@ -33,7 +33,7 @@ export default function Publisher() {
           transition={{ duration: 0.5 }}
           className="text-3xl md:text-4xl font-semibold mb-10 text-center text-black font-mono"
         >
-          Publishers We Work With
+          {content.publisher_title}
         </motion.h2>
 
         <div className="relative w-full overflow-hidden">

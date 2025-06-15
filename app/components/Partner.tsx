@@ -10,7 +10,7 @@ const logos = [
   { src: "/google.svg", alt: "google" },
 ];
 
-export default function PartnerSection() {
+export default function PartnerSection({ content }: { content: Record<string, any> }) {
   const ref = useRef(null);
   const isInView = useInView(ref, {
     // ❌ bỏ once: true
@@ -26,7 +26,7 @@ export default function PartnerSection() {
           transition={{ duration: 0.5 }}
           className="text-3xl md:text-4xl font-semibold mb-10 text-center text-black font-mono"
         >
-          Partners We Work With
+         {content.partner_title}
         </motion.h2>
 
         <motion.div

@@ -11,6 +11,7 @@ import Publisher from "./components/Publisher";
 import Partner from "./components/Partner";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import PartnersBar from "./components/PartnersBar";
 
 export default function Home() {
   const ourWorkRef = useRef<HTMLDivElement | null>(null);
@@ -78,8 +79,9 @@ export default function Home() {
           aboutUsRef.current?.scrollIntoView({ behavior: "smooth" })
         }
         openPopup={() => setShowPopup(true)}
+        content={content}
       />
-
+      <PartnersBar />
       {/* Hero Section */}
       <div className="flex-grow bg-white px-6 flex justify-center">
         <section
@@ -95,13 +97,14 @@ export default function Home() {
               className="text-center md:text-left"
             >
               <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-tight text-gray-900">
-                {content.hero_title_1} <span className="text-blue-600">Revenue</span>
+                {content.hero_title_1}{" "}
+                <span className="text-blue-600">{content.hero_title_2}</span>
                 <br />
-                Less <span className="text-blue-600">Effort</span>
+                {content.hero_title_3}{" "}
+                <span className="text-blue-600"> {content.hero_title_4} </span>
               </h1>
               <p className="mt-6 text-gray-700 text-base md:text-lg lg:text-xl font-mono">
-                BidSmart connects your ad spaces with smarter delivery, higher
-                fill rates, and stronger returns — automatically.
+                {content.hero_subtitle}
               </p>
 
               <div className="mt-6 flex flex-wrap gap-3 justify-center md:justify-start">
@@ -111,13 +114,16 @@ export default function Home() {
                 <span className="bg-green-100 text-green-700 text-xs px-3 py-1 rounded-full font-semibold">
                   #SmartFill
                 </span>
-                <span className="bg-yellow-100 text-yellow-800 text-xs px-3 py-1 rounded-full font-semibold">
+                {/* <span className="bg-yellow-100 text-yellow-800 text-xs px-3 py-1 rounded-full font-semibold">
                   #RealTimeBidding
-                </span>
+                </span> */}
               </div>
 
               <div className="mt-8">
-                <button className="bg-blue-600 text-white px-6 py-3 rounded-full font-semibold text-base hover:bg-blue-700 transition">
+                <button
+                  onClick={() => setShowPopup(true)}
+                  className="bg-blue-600 text-white px-6 py-3 rounded-full font-semibold text-base hover:bg-blue-700 transition"
+                >
                   Get a Demo
                 </button>
               </div>
@@ -143,21 +149,21 @@ export default function Home() {
       {/* Popup */}
       <ContactPopup isOpen={showPopup} onClose={() => setShowPopup(false)} />
 
-      <StatsCommitment />
+      <StatsCommitment content={content} />
 
       <div ref={clientsRef}>
-        <Publisher />
+        <Publisher content={content} />
       </div>
 
-      <WhyUs />
+      <WhyUs content={content} />
 
-      <Partner />
+      <Partner content={content} />
 
       <div ref={ourWorkRef}>
-        <OurWorkVideo />
+        <OurWorkVideo content={content} />
       </div>
       <div ref={aboutUsRef}>
-        <GlobalReach onOpenPopup={() => setShowPopup(true)} />
+        <GlobalReach content={content} onOpenPopup={() => setShowPopup(true)} />
       </div>
     </>
   );

@@ -11,62 +11,56 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 
-const statsData = [
-  {
-    icon: <Users className="w-10 h-10 text-blue-600" />,
-    value: 300,
-    label: "Working Publishers",
-  },
-  {
-    icon: <BarChart2 className="w-10 h-10 text-green-600" />,
-    value: 3,
-    label: "Bill Impressions",
-  },
-  {
-    icon: <Handshake className="w-10 h-10 text-orange-500" />,
-    value: 40,
-    label: "Advertisers",
-  },
-  {
-    icon: <MonitorPlay className="w-10 h-10 text-purple-600" />,
-    value: 100,
-    label: "Million Users",
-  },
-  {
-    icon: <UserCheck className="w-10 h-10 text-emerald-600" />,
-    value: 300,
-    label: "Active Publishers",
-  },
-];
-
 function AnimatedNumber({ to, triggerKey }: { to: number; triggerKey: any }) {
   const [count, setCount] = useState(0);
-
   useEffect(() => {
     let start = 0;
     const duration = 2500;
     const stepTime = Math.abs(Math.floor(duration / to));
-
     const timer = setInterval(() => {
       start += 1;
       setCount(start);
       if (start >= to) clearInterval(timer);
     }, stepTime);
-
     return () => clearInterval(timer);
-  }, [to, triggerKey]); // triggerKey = mỗi lần view lại => re-run effect
-
+  }, [to, triggerKey]);
   return <span>{count}+</span>;
 }
 
-export default function StatsSection() {
-  const [ref, inView] = useInView({ threshold: 0.5 }); // không dùng triggerOnce
+export default function StatsSection({ content }: { content: Record<string, any> }) {
+  const [ref, inView] = useInView({ threshold: 0.5 });
+
+  // ✅ Build dynamic data binding từ content
+  const statsData = [
+    {
+      icon: <Users className="w-10 h-10 text-blue-600" />,
+      value: Number(content?.commitment_data_1 ?? 0),
+      label: "Working Publishers",
+    },
+    {
+      icon: <BarChart2 className="w-10 h-10 text-green-600" />,
+      value: Number(content?.commitment_data_2 ?? 0),
+     label: "Bill Impressions",
+    },
+    {
+      icon: <Handshake className="w-10 h-10 text-orange-500" />,
+      value: Number(content?.commitment_data_3 ?? 0),
+      label: "Advertisers",
+    },
+    {
+      icon: <MonitorPlay className="w-10 h-10 text-purple-600" />,
+      value: Number(content?.commitment_data_4 ?? 0),
+      label: "Million Users",
+    },
+    {
+      icon: <UserCheck className="w-10 h-10 text-emerald-600" />,
+      value: Number(content?.commitment_data_5 ?? 0),
+      label: "Active Publishers",
+    },
+  ];
 
   return (
-    <section
-      className="py-10 px-4 md:px-12 bg-gradient-to-b from-blue-50 to-white"
-      ref={ref}
-    >
+    <section className="py-10 px-4 md:px-12 bg-gradient-to-b from-blue-50 to-white" ref={ref}>
       <div className="max-w-6xl mx-auto flex flex-wrap justify-between text-center">
         {statsData.map((stat, index) => (
           <motion.div
@@ -80,10 +74,7 @@ export default function StatsSection() {
               {stat.icon}
             </div>
             <h3 className="text-5xl font-extrabold text-gray-900 font-mono">
-              <AnimatedNumber
-                to={stat.value}
-                triggerKey={inView ? Date.now() + index : 0}
-              />
+              <AnimatedNumber to={stat.value} triggerKey={inView ? Date.now() + index : 0} />
             </h3>
             <p className="text-sm text-gray-600 mt-1">{stat.label}</p>
           </motion.div>

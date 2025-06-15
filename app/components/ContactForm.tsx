@@ -29,14 +29,14 @@ export default function ContactForm({ onClose }: { onClose: () => void }) {
       )
       .then(() => {
         alert(
-          "Cám ơn bạn đã quan tâm! Chúng tôi sẽ liên lạc với bạn sớm nhất."
+          "Thank you for your interest. A member of our team will reach out to you shortly."
         );
         formRef.current?.reset();
         onClose();
       })
       .catch((error) => {
         console.error("Send failed:", error);
-        alert("Gửi không thành công. Vui lòng thử lại.");
+        alert("Unable to submit your request. Please try again later.");
       })
       .finally(() => setIsLoading(false));
   };
