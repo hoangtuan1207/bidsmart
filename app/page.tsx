@@ -97,14 +97,14 @@ export default function Home() {
               className="text-center md:text-left"
             >
               <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-tight text-gray-900">
-                {content.hero_title_1}{" "}
-                <span className="text-blue-600">{content.hero_title_2}</span>
+                {content.hero_title_1 || "More"}{" "}
+                <span className="text-blue-600">{content.hero_title_2 || "Revenue"}</span>
                 <br />
-                {content.hero_title_3}{" "}
-                <span className="text-blue-600"> {content.hero_title_4} </span>
+                {content.hero_title_3 || "Less"}{" "}
+                <span className="text-blue-600"> {content.hero_title_4 || "Effort"} </span>
               </h1>
               <p className="mt-6 text-gray-700 text-base md:text-lg lg:text-xl font-mono">
-                {content.hero_subtitle}
+                {content.hero_subtitle || "BidSmart connects your ad spaces with smarter delivery, higher fill rates, and stronger returns — automatically."}
               </p>
 
               <div className="mt-6 flex flex-wrap gap-3 justify-center md:justify-start">

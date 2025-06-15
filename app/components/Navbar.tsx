@@ -112,8 +112,17 @@ export default function Navbar({
             }}
             className="text-black font-medium"
           >
-            Our Work
+            {content.navbar_control_1 || "Our Service"}
           </button>
+          <button
+            onClick={() => {
+              setIsOpen(false);
+            }}
+            className="text-black font-medium"
+          >
+            {content.navbar_control_2 || "Clients"}
+          </button>
+
           <button
             onClick={() => {
               setIsOpen(false);
@@ -121,7 +130,23 @@ export default function Navbar({
             }}
             className="text-black font-medium"
           >
-            Partners
+            {content.navbar_control_3 || "Partners"}
+          </button>
+          <button
+            onClick={() => {
+              setIsOpen(false);
+            }}
+            className="text-black font-medium"
+          >
+            {content.navbar_control_4 || "News"}
+          </button>
+          <button
+            onClick={() => {
+              setIsOpen(false);
+            }}
+            className="text-black font-medium"
+          >
+            {content.navbar_control_5 || "Testimonial"}
           </button>
           <button
             onClick={() => {
@@ -130,7 +155,7 @@ export default function Navbar({
             }}
             className="text-black font-medium"
           >
-            About Us
+            {content.navbar_control_6 || "About Us"}
           </button>
           <button
             onClick={() => {
@@ -139,7 +164,7 @@ export default function Navbar({
             }}
             className="mt-4 w-full bg-blue-600 text-white font-semibold px-4 py-2 rounded-full"
           >
-            Get Started
+            {content.navbar_btn || "Get Started"}
           </button>
         </div>
       )}
