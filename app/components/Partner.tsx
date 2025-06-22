@@ -10,7 +10,11 @@ const logos = [
   { src: "/google.svg", alt: "google" },
 ];
 
-export default function PartnerSection({ content }: { content: Record<string, any> }) {
+export default function PartnerSection({
+  content,
+}: {
+  content: Record<string, any>;
+}) {
   const ref = useRef(null);
   const isInView = useInView(ref, {
     // ❌ bỏ once: true
@@ -18,15 +22,54 @@ export default function PartnerSection({ content }: { content: Record<string, an
   });
 
   return (
-    <section className="py-10 overflow-hidden" ref={ref}>
+    // <section className="py-10 overflow-hidden" ref={ref}>
+    //   <div className="max-w-7xl mx-auto px-4">
+    //     <motion.h2
+    //       initial={{ opacity: 0, y: 20 }}
+    //       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+    //       transition={{ duration: 0.5 }}
+    //       className="text-3xl md:text-4xl font-semibold mb-10 text-center text-black font-mono"
+    //     >
+    //      {content.partner_title}
+    //     </motion.h2>
+
+    //     <motion.div
+    //       initial={{ opacity: 0, y: 40 }}
+    //       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+    //       transition={{ duration: 0.6, ease: "easeOut" }}
+    //       className="flex flex-wrap justify-center items-center gap-12"
+    //     >
+    //       {logos.map((logo, index) => (
+    //         <motion.img
+    //           key={index}
+    //           src={logo.src}
+    //           alt={logo.alt}
+    //           width={120}
+    //           height={60}
+    //           className="object-contain h-auto max-h-12"
+    //           initial={{ opacity: 0, scale: 0.8 }}
+    //           animate={
+    //             isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }
+    //           }
+    //           transition={{ duration: 0.4, delay: index * 0.1 }}
+    //         />
+    //       ))}
+    //     </motion.div>
+    //   </div>
+    // </section>
+
+    <section
+      className="py-10 overflow-hidden bg-white dark:bg-[#0f172a]"
+      ref={ref}
+    >
       <div className="max-w-7xl mx-auto px-4">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.5 }}
-          className="text-3xl md:text-4xl font-semibold mb-10 text-center text-black font-mono"
+          className="text-3xl md:text-4xl font-semibold mb-10 text-center text-black dark:text-white font-mono"
         >
-         {content.partner_title}
+          {content.partner_title}
         </motion.h2>
 
         <motion.div

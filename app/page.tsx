@@ -16,6 +16,7 @@ import PartnersBar from "./components/PartnersBar";
 export default function Home() {
   const ourWorkRef = useRef<HTMLDivElement | null>(null);
   const clientsRef = useRef<HTMLDivElement | null>(null);
+  const partnersRef = useRef<HTMLDivElement | null>(null);
   const aboutUsRef = useRef<HTMLDivElement | null>(null);
   const [showPopup, setShowPopup] = useState(false);
 
@@ -75,6 +76,9 @@ export default function Home() {
         scrollToClients={() =>
           clientsRef.current?.scrollIntoView({ behavior: "smooth" })
         }
+        scrollToPartners={() =>
+          partnersRef.current?.scrollIntoView({ behavior: "smooth" })
+        }
         scrollToAboutUs={() =>
           aboutUsRef.current?.scrollIntoView({ behavior: "smooth" })
         }
@@ -83,10 +87,10 @@ export default function Home() {
       />
       <PartnersBar />
       {/* Hero Section */}
-      <div className="flex-grow bg-white px-6 flex justify-center">
+      <div className="flex-grow bg-[#0f172a] px-6 flex justify-center">
         <section
           ref={heroRef}
-          className="relative w-full bg-gradient-to-b from-white to-blue-50 py-24 px-4 sm:py-14 md:py-16 lg:py-15"
+          className="relative w-full bg-[#0f172a] py-24 px-4 sm:py-14 md:py-16 lg:py-15"
         >
           <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             {/* Left */}
@@ -96,15 +100,21 @@ export default function Home() {
               animate={controls}
               className="text-center md:text-left"
             >
-              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-tight text-gray-900">
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-tight text-white">
                 {content.hero_title_1 || "More"}{" "}
-                <span className="text-blue-600">{content.hero_title_2 || "Revenue"}</span>
+                <span className="text-blue-500">
+                  {content.hero_title_2 || "Revenue"}
+                </span>
                 <br />
                 {content.hero_title_3 || "Less"}{" "}
-                <span className="text-blue-600"> {content.hero_title_4 || "Effort"} </span>
+                <span className="text-blue-500">
+                  {" "}
+                  {content.hero_title_4 || "Effort"}{" "}
+                </span>
               </h1>
-              <p className="mt-6 text-gray-700 text-base md:text-lg lg:text-xl font-mono">
-                {content.hero_subtitle || "BidSmart connects your ad spaces with smarter delivery, higher fill rates, and stronger returns — automatically."}
+              <p className="mt-6 text-gray-300 text-base md:text-lg lg:text-xl font-mono">
+                {content.hero_subtitle ||
+                  "BidSmart connects your ad spaces with smarter delivery, higher fill rates, and stronger returns — automatically."}
               </p>
 
               <div className="mt-6 flex flex-wrap gap-3 justify-center md:justify-start">
@@ -114,9 +124,6 @@ export default function Home() {
                 <span className="bg-green-100 text-green-700 text-xs px-3 py-1 rounded-full font-semibold">
                   #SmartFill
                 </span>
-                {/* <span className="bg-yellow-100 text-yellow-800 text-xs px-3 py-1 rounded-full font-semibold">
-                  #RealTimeBidding
-                </span> */}
               </div>
 
               <div className="mt-8">
@@ -137,7 +144,7 @@ export default function Home() {
               className="flex justify-center md:justify-end"
             >
               <img
-                src="/images/hero.png"
+                src="/images/hero-1.png"
                 alt="Hero Illustration"
                 className="w-full max-w-md md:max-w-lg lg:max-w-xl h-auto"
               />
@@ -157,7 +164,9 @@ export default function Home() {
 
       <WhyUs content={content} />
 
-      <Partner content={content} />
+      <div ref={partnersRef}>
+        <Partner content={content} />
+      </div>
 
       <div ref={ourWorkRef}>
         <OurWorkVideo content={content} />

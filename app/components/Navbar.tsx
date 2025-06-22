@@ -8,6 +8,7 @@ import { useAnimation } from "framer-motion";
 type NavbarProps = {
   scrollToWork: () => void;
   scrollToClients: () => void;
+  scrollToPartners: () => void;
   scrollToAboutUs: () => void;
   openPopup: () => void;
   content: Record<string, string>;
@@ -16,6 +17,7 @@ type NavbarProps = {
 export default function Navbar({
   scrollToWork,
   scrollToClients,
+  scrollToPartners,
   scrollToAboutUs,
   openPopup,
   content,
@@ -34,53 +36,53 @@ export default function Navbar({
   // }, [inView, controls]);
 
   return (
-    <header className="w-full h-16 bg-white shadow-sm flex items-center justify-between px-6 lg:px-12 relative z-50">
+    <header className="w-full h-16 bg-[#0f172a] shadow-sm flex items-center justify-between px-6 lg:px-12 relative z-50">
       {/* Logo */}
       <div className="flex items-center">
         <img
-          src="/images/icon-3.png"
+          src="/images/icon-4.png"
           alt="Bidsmart Logo"
           className="w-40 h-20 object-contain"
         />
       </div>
 
       {/* Desktop menu */}
-      <nav className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center space-x-10 text-sm font-semibold text-black whitespace-nowrap">
+      <nav className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center space-x-10 text-sm font-semibold text-white whitespace-nowrap">
         <button
           onClick={scrollToWork}
-          className="hover:text-blue-600 transition"
+          className="hover:text-blue-400 transition"
         >
-            {content.navbar_control_1 || "Our Service"}
+          {content.navbar_control_1 || "Our Service"}
         </button>
         <button
           onClick={scrollToClients}
-          className="hover:text-blue-600 transition"
+          className="hover:text-blue-400 transition"
         >
-         {content.navbar_control_2 || "Clients"}
+          {content.navbar_control_2 || "Clients"}
         </button>
         <button
-          onClick={scrollToClients}
-          className="hover:text-blue-600 transition"
+          onClick={scrollToPartners}
+          className="hover:text-blue-400 transition"
         >
-        {content.navbar_control_3 || "Partners"}
+          {content.navbar_control_3 || "Partners"}
         </button>
-        <button
+        {/* <button
           onClick={scrollToClients}
-          className="hover:text-blue-600 transition"
+          className="hover:text-blue-400 transition"
         >
-           {content.navbar_control_4 || "News"}
-        </button>
-        <button
+          {content.navbar_control_4 || "News"}
+        </button> */}
+        {/* <button
           onClick={scrollToClients}
-          className="hover:text-blue-600 transition"
+          className="hover:text-blue-400 transition"
         >
-            {content.navbar_control_5 || "Testimonial"}
-        </button>
+          {content.navbar_control_5 || "Testimonial"}
+        </button> */}
         <button
           onClick={scrollToAboutUs}
-          className="hover:text-blue-600 transition"
+          className="hover:text-blue-400 transition"
         >
-        {content.navbar_control_6 || "About Us"}
+          {content.navbar_control_6 || "About Us"}
         </button>
       </nav>
 
@@ -91,26 +93,27 @@ export default function Navbar({
             onClick={openPopup}
             className="px-5 py-2 text-sm font-semibold text-white bg-blue-600 rounded-full hover:bg-blue-700 transition"
           >
-           {content.navbar_btn || "Get Started"}
+            {content.navbar_btn || "Get Started"}
           </button>
         </div>
       )}
+
       {/* Hamburger button */}
       <div className="md:hidden">
-        <button onClick={() => setIsOpen(!isOpen)} className="text-black">
+        <button onClick={() => setIsOpen(!isOpen)} className="text-white">
           {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
       {/* Mobile menu */}
       {isOpen && (
-        <div className="absolute top-16 left-0 w-full bg-white shadow-md flex flex-col items-start p-6 space-y-4 md:hidden z-40">
+        <div className="absolute top-16 left-0 w-full bg-[#0f172a] shadow-md flex flex-col items-start p-6 space-y-4 md:hidden z-40">
           <button
             onClick={() => {
               setIsOpen(false);
               scrollToWork();
             }}
-            className="text-black font-medium"
+            className="text-white font-medium"
           >
             {content.navbar_control_1 || "Our Service"}
           </button>
@@ -118,7 +121,7 @@ export default function Navbar({
             onClick={() => {
               setIsOpen(false);
             }}
-            className="text-black font-medium"
+            className="text-white font-medium"
           >
             {content.navbar_control_2 || "Clients"}
           </button>
@@ -126,34 +129,34 @@ export default function Navbar({
           <button
             onClick={() => {
               setIsOpen(false);
-              scrollToClients();
+              scrollToPartners();
             }}
-            className="text-black font-medium"
+            className="text-white font-medium"
           >
             {content.navbar_control_3 || "Partners"}
           </button>
-          <button
+          {/* <button
             onClick={() => {
               setIsOpen(false);
             }}
-            className="text-black font-medium"
+            className="text-white font-medium"
           >
             {content.navbar_control_4 || "News"}
-          </button>
-          <button
+          </button> */}
+          {/* <button
             onClick={() => {
               setIsOpen(false);
             }}
-            className="text-black font-medium"
+            className="text-white font-medium"
           >
             {content.navbar_control_5 || "Testimonial"}
-          </button>
+          </button> */}
           <button
             onClick={() => {
               setIsOpen(false);
               scrollToAboutUs();
             }}
-            className="text-black font-medium"
+            className="text-white font-medium"
           >
             {content.navbar_control_6 || "About Us"}
           </button>

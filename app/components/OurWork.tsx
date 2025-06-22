@@ -32,8 +32,11 @@ const OurWorkVideo = forwardRef<HTMLElement, Props>(({ content }, ref) => {
   }, [hasPlayed]);
 
   return (
-    <section ref={ref} className="pt-10 px-4 bg-white text-center">
-      <h2 className="text-5xl md:text-6xl font-extrabold text-gray-900 font-mono">
+    <section
+      ref={ref}
+      className="pt-10 px-4 bg-[#0e1729] text-center text-white"
+    >
+      <h2 className="text-5xl md:text-6xl font-extrabold font-mono text-white">
         {content?.our_service_title ?? "Advertising Format"}
       </h2>
       <div className="mt-5">

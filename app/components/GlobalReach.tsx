@@ -14,7 +14,7 @@ const GlobalReach: FC<GlobalReachProps> = ({ onOpenPopup, content }) => {
   const isInView = useInView(ref, { margin: "-100px" });
 
   return (
-    <section className="bg-white pt-30 pb-10" ref={ref}>
+    <section className="bg-[#0e1729] pt-30 pb-10 text-white" ref={ref}>
       <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-12">
         {/* Left: Text Content */}
         <motion.div
@@ -23,24 +23,26 @@ const GlobalReach: FC<GlobalReachProps> = ({ onOpenPopup, content }) => {
           transition={{ duration: 0.5 }}
           className="w-full md:w-2/5 text-left space-y-6"
         >
-          <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight">
+          <h2 className="text-4xl md:text-5xl font-extrabold leading-tight">
             <span>📍</span> {content.abs_title || "Get in Touch"}
           </h2>
-          <p className="text-gray-600 text-lg">
+          <p className="text-gray-300 text-lg">
             {content.abs_subtitle ||
               "Whether you're nearby or across the world, we're here to collaborate."}
           </p>
 
-          <div className="space-y-2 text-gray-800 text-base">
+          <div className="space-y-2 text-gray-200 text-base">
             <p>
               <span className="font-semibold">🏢 Company:</span>{" "}
-              <span className="text-gray-900">{content.company_title || "BidSmart"}</span>
+              <span>{content.company_title || "BidSmart"}</span>
             </p>
             <p>
               <span className="font-semibold">📧 Email:</span>{" "}
               <a
-                href={`mailto:${content.company_email || "info@bidsmartca.com"}`}
-                className="text-blue-600 font-medium hover:underline"
+                href={`mailto:${
+                  content.company_email || "info@bidsmartca.com"
+                }`}
+                className="text-blue-400 font-medium hover:underline"
               >
                 {content.company_email || "info@bidsmartca.com"}
               </a>

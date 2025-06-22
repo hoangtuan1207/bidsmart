@@ -35,43 +35,41 @@ export default function VideoCarousel() {
   }, [currentIndex]);
 
   return (
-    <div className="max-w-6xl mx-auto flex flex-col items-center gap-6">
+    <div className="max-w-6xl mx-auto flex flex-col items-center gap-6 px-4">
+      {/* Title */}
       <motion.span
         key={currentIndex}
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3 }}
-        className="inline-block px-5 py-2 rounded-full text-white font-semibold text-lg tracking-wide shadow-lg bg-gradient-to-r from-indigo-500 via-blue-500 to-cyan-400 font-mono"
+        className="inline-block px-5 py-2 rounded-full text-white font-semibold text-lg tracking-wide shadow-lg bg-gradient-to-r from-blue-600 to-cyan-500 font-mono text-center"
       >
         {videos[currentIndex].title}
       </motion.span>
 
-      <div className="flex items-center justify-center gap-6">
-        <div className="w-[160px] opacity-40">
-          {videos.length > 1 && (
-            <>
-              <video
-                src={
-                  videos[(currentIndex - 1 + videos.length) % videos.length].src
-                }
-                muted
-                controls
-                preload="metadata"
-                className="rounded-lg border shadow w-full h-[90px] object-cover"
-              />
-              <button
-                onClick={handlePrev}
-                className="w-full mt-2 text-sm bg-gray-100 hover:bg-gray-200 px-3 py-1 rounded"
-              >
-                ◀ Previous
-              </button>
-            </>
-          )}
+      {/* Video section */}
+      <div className="flex flex-col lg:flex-row items-center justify-center gap-6 w-full">
+        {/* Thumbnail trái (ẩn trên mobile) */}
+        <div className="hidden lg:block w-[160px] opacity-50">
+          <video
+            src={videos[(currentIndex - 1 + videos.length) % videos.length].src}
+            muted
+            controls
+            preload="metadata"
+            className="rounded-lg border border-gray-700 shadow w-full h-[90px] object-cover bg-[#1c1f26]"
+          />
+          <button
+            onClick={handlePrev}
+            className="w-full mt-2 text-sm bg-[#2c3a4a] hover:bg-blue-600 text-white px-3 py-1 rounded transition"
+          >
+            ◀ Previous
+          </button>
         </div>
 
+        {/* Video chính */}
         <div className="w-full max-w-[640px]">
-          <div className="w-full max-w-[640px] aspect-video bg-black rounded-2xl shadow-lg overflow-hidden flex items-center justify-center">
-            <div className="w-full max-w-[640px] aspect-video rounded-2xl shadow-lg bg-[#535353] p-2">
+          <div className="aspect-video bg-black rounded-2xl shadow-lg overflow-hidden flex items-center justify-center">
+            <div className="w-full aspect-video rounded-2xl shadow-lg bg-[#1c1f26] p-2">
               <video
                 ref={videoRef}
                 src={videos[currentIndex].src}
@@ -84,26 +82,39 @@ export default function VideoCarousel() {
               />
             </div>
           </div>
+
+          {/* Mobile buttons: chỉ hiện trên mobile */}
+          <div className="mt-4 flex justify-between gap-4 lg:hidden">
+            <button
+              onClick={handlePrev}
+              className="flex-1 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-xl text-sm font-semibold transition"
+            >
+              ◀ Previous
+            </button>
+            <button
+              onClick={handleNext}
+              className="flex-1 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-xl text-sm font-semibold transition"
+            >
+              Next ▶
+            </button>
+          </div>
         </div>
 
-        <div className="w-[160px] opacity-40">
-          {videos.length > 1 && (
-            <>
-              <video
-                src={videos[(currentIndex + 1) % videos.length].src}
-                muted
-                controls
-                preload="metadata"
-                className="rounded-lg border shadow w-full h-[90px] object-cover"
-              />
-              <button
-                onClick={handleNext}
-                className="w-full mt-2 text-sm bg-gray-100 hover:bg-gray-200 px-3 py-1 rounded"
-              >
-                Next ▶
-              </button>
-            </>
-          )}
+        {/* Thumbnail phải (ẩn trên mobile) */}
+        <div className="hidden lg:block w-[160px] opacity-50">
+          <video
+            src={videos[(currentIndex + 1) % videos.length].src}
+            muted
+            controls
+            preload="metadata"
+            className="rounded-lg border border-gray-700 shadow w-full h-[90px] object-cover bg-[#1c1f26]"
+          />
+          <button
+            onClick={handleNext}
+            className="w-full mt-2 text-sm bg-[#2c3a4a] hover:bg-blue-600 text-white px-3 py-1 rounded transition"
+          >
+            Next ▶
+          </button>
         </div>
       </div>
     </div>
