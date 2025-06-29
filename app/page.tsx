@@ -86,7 +86,7 @@ export default function Home() {
         setNews(newsList);
         setTestimonials(testimonialsList);
       });
-  }, []);
+  }, [inView, controls]);
   // useEffect(() => {
   //   if (inView) {
   //     controls.start("visible");
