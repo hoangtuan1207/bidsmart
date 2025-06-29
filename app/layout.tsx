@@ -16,7 +16,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="h-full w-full overflow-x-hidden">
+    <html lang="en" className="h-full w-full">
       <head>
         {/* Google Analytics GA4 */}
         <Script
@@ -32,7 +32,8 @@ export default function RootLayout({
           `}
         </Script>
       </head>
-      <body className="min-h-screen max-w-full w-full flex flex-col bg-white dark:bg-black/95 overflow-x-hidden">
+      <body className="flex flex-col min-h-screen w-full overflow-x-hidden">
+        {/* Main content where sticky navbar is included */}
         <main className="flex-1 w-full">{children}</main>
       </body>
     </html>

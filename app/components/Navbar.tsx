@@ -36,7 +36,7 @@ export default function Navbar({
   // }, [inView, controls]);
 
   return (
-    <header className="w-full h-16 bg-[#0f172a] shadow-sm flex items-center justify-between px-6 lg:px-12 relative z-50">
+    <header className="sticky top-0 w-full h-16 bg-[#0f172a] shadow-sm flex items-center justify-between px-6 lg:px-12 z-50">
       {/* Logo */}
       <div className="flex items-center">
         <img
@@ -45,7 +45,6 @@ export default function Navbar({
           className="w-40 h-20 object-contain"
         />
       </div>
-
       {/* Desktop menu */}
       <nav className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center space-x-10 text-sm font-semibold text-white whitespace-nowrap">
         <button
@@ -66,18 +65,18 @@ export default function Navbar({
         >
           {content.navbar_control_3 || "Partners"}
         </button>
-        {/* <button
-          onClick={scrollToClients}
+        <button
+          // onClick={scrollToClients}
           className="hover:text-blue-400 transition"
         >
           {content.navbar_control_4 || "News"}
-        </button> */}
-        {/* <button
-          onClick={scrollToClients}
+        </button>
+        <button
+          // onClick={scrollToClients}
           className="hover:text-blue-400 transition"
         >
           {content.navbar_control_5 || "Testimonial"}
-        </button> */}
+        </button>
         <button
           onClick={scrollToAboutUs}
           className="hover:text-blue-400 transition"
@@ -85,7 +84,6 @@ export default function Navbar({
           {content.navbar_control_6 || "About Us"}
         </button>
       </nav>
-
       {/* CTA desktop */}
       {content?.navbar_btn && (
         <div className="hidden md:flex items-center">
@@ -97,14 +95,12 @@ export default function Navbar({
           </button>
         </div>
       )}
-
       {/* Hamburger button */}
       <div className="md:hidden">
         <button onClick={() => setIsOpen(!isOpen)} className="text-white">
           {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
-
       {/* Mobile menu */}
       {isOpen && (
         <div className="absolute top-16 left-0 w-full bg-[#0f172a] shadow-md flex flex-col items-start p-6 space-y-4 md:hidden z-40">
@@ -135,22 +131,22 @@ export default function Navbar({
           >
             {content.navbar_control_3 || "Partners"}
           </button>
-          {/* <button
+          <button
             onClick={() => {
               setIsOpen(false);
             }}
             className="text-white font-medium"
           >
             {content.navbar_control_4 || "News"}
-          </button> */}
-          {/* <button
+          </button>
+          <button
             onClick={() => {
               setIsOpen(false);
             }}
             className="text-white font-medium"
           >
             {content.navbar_control_5 || "Testimonial"}
-          </button> */}
+          </button>
           <button
             onClick={() => {
               setIsOpen(false);
