@@ -16,6 +16,7 @@ import { NewsAndTestimonialsSection } from "./components/NewsAndTestimonialsSect
 
 export default function Home() {
   const ourWorkRef = useRef<HTMLDivElement | null>(null);
+  const newsRef = useRef<HTMLDivElement | null>(null);
   const clientsRef = useRef<HTMLDivElement | null>(null);
   const partnersRef = useRef<HTMLDivElement | null>(null);
   const aboutUsRef = useRef<HTMLDivElement | null>(null);
@@ -119,6 +120,9 @@ export default function Home() {
         }
         scrollToAboutUs={() =>
           aboutUsRef.current?.scrollIntoView({ behavior: "smooth" })
+        }
+        scrollToNews={() =>
+          newsRef.current?.scrollIntoView({ behavior: "smooth" })
         }
         openPopup={() => setShowPopup(true)}
         content={content}
@@ -261,23 +265,30 @@ export default function Home() {
       </div>
 
       <ContactPopup isOpen={showPopup} onClose={() => setShowPopup(false)} />
+
       <StatsCommitment content={content} />
+
       <div ref={clientsRef}>
         <Publisher content={content} />
       </div>
+
       <WhyUs content={content} />
+
       <div ref={partnersRef}>
         <Partner content={content} />
       </div>
 
-      <NewsAndTestimonialsSection
-        content={{
-          title_news: content.title_news,
-          title_testimonials: content.title_testimonials,
-        }}
-        news={news}
-        testimonials={testimonials}
-      />
+      <div ref={newsRef}>
+        <NewsAndTestimonialsSection
+          content={{
+            title_news: content.title_news,
+            title_testimonials: content.title_testimonials,
+          }}
+          news={news}
+          testimonials={testimonials}
+        />
+      </div>
+
       {/* <section className="w-full bg-[#0f172a] py-16 px-4">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-2xl md:text-3xl font-bold text-center text-white mb-10">

@@ -10,6 +10,7 @@ type NavbarProps = {
   scrollToClients: () => void;
   scrollToPartners: () => void;
   scrollToAboutUs: () => void;
+  scrollToNews: () => void;
   openPopup: () => void;
   content: Record<string, string>;
 };
@@ -19,6 +20,7 @@ export default function Navbar({
   scrollToClients,
   scrollToPartners,
   scrollToAboutUs,
+  scrollToNews,
   openPopup,
   content,
 }: NavbarProps) {
@@ -66,13 +68,13 @@ export default function Navbar({
           {content.navbar_control_3 || "Partners"}
         </button>
         <button
-          // onClick={scrollToClients}
+          onClick={scrollToNews}
           className="hover:text-blue-400 transition"
         >
           {content.navbar_control_4 || "News"}
         </button>
         <button
-          // onClick={scrollToClients}
+          onClick={scrollToNews}
           className="hover:text-blue-400 transition"
         >
           {content.navbar_control_5 || "Testimonial"}
