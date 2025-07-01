@@ -58,16 +58,23 @@ export default function Home() {
     fetch("/api/landing")
       .then((res) => res.json())
       .then((data) => {
+        console.log("🚀 ~ .then ~ data:", data);
         setContent(data);
 
-        const newsList: Item[] = data.news_data
-          ?.split("\n")
+        const newsList: Item[] = (data.news_data || "")
+          .split("-") // Tách theo dấu "-"
+          .map((line: string) => line.trim())
+          .filter((line: any) => line) // Bỏ rỗng
           .map((line: string, index: number) => {
-            const clean = line.replace(/^[-•]\s*/, "").trim();
+            // Dùng regex để tách title và URL
+            const match = line.match(/^([^:]+):\s*(https?:\/\/[^\s:]+).*$/);
+            const title = match?.[1]?.trim() || `News ${index + 1}`;
+            const url = match?.[2]?.trim() || "";
+
             return {
               id: `news-${index}`,
-              title: clean.split(":")[0] || `News ${index + 1}`,
-              content: clean.split(":")[1]?.trim() || "",
+              title,
+              content: url,
             };
           });
 
@@ -87,29 +94,6 @@ export default function Home() {
         setTestimonials(testimonialsList);
       });
   }, [inView, controls]);
-  // useEffect(() => {
-  //   if (inView) {
-  //     controls.start("visible");
-  //   } else {
-  //     controls.start("hidden");
-  //   }
-
-  //   // fetch Hero content
-  //   fetch("/api/landing")
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       // 👉 Tách danh sách từ chuỗi dạng "- Item 1\n- Item 2\n..."
-  //       const parsedList = data.news_data
-  //         ?.split("\n")
-  //         .map((line: string) => line.replace(/^[-•]\s*/, "").trim());
-  //       console.log(parsedList);
-  //       setContent({
-  //         ...data,
-  //         news_data_list: parsedList, // ✅ thêm mảng đã xử lý
-  //       });
-  //     })
-  //     .catch(console.error);
-  // }, [inView, controls]);
 
   const leftVariants = {
     hidden: { x: -100, opacity: 0 },
@@ -140,52 +124,36 @@ export default function Home() {
         content={content}
       />
 
-      <div className="flex-grow bg-[#0f172a] px-6 flex justify-center">
+      <div className="flex-grow bg-[#022854] px-6 flex justify-center">
         <section
           ref={heroRef}
           className="relative w-full px-4 pt-16 pb-24 sm:py-20 md:py-24 overflow-hidden"
         >
-          {/* Background image for mobile (hiện ảnh bên trên) */}
-          <motion.div className="block md:hidden w-full mb-10">
-            <img
-              src="/images/hero-3.png"
-              alt="Hero background"
-              className="w-full h-auto rounded-xl border border-[#0f172a] shadow-lg object-cover"
-            />
-          </motion.div>
+          {/* Overlay làm tối nền ảnh */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#022854]/90 via-[#022854]/60 to-transparent z-10" />
 
-          {/* Background image cho desktop (hiện bên phải) */}
-          <motion.div
-            initial={{ opacity: 0, x: 100 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            className="hidden md:block absolute right-0 top-0 bottom-0 w-1/2 bg-cover bg-center z-0 rounded-xl border border-[#0f172a] shadow-lg"
-            style={{
-              backgroundImage: "url('/images/hero-3.png')",
-            }}
-          />
-
-          {/* Overlay: tối ảnh giúp đọc chữ dễ hơn */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0f172a]/90 via-[#0f172a]/60 to-transparent z-10" />
-
-          {/* Nội dung */}
-          <div className="relative z-20 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+          {/* Nội dung + hình ảnh */}
+          <div className="relative z-20 max-w-7xl mx-auto flex flex-col md:flex-row items-center md:items-start gap-10">
+            {/* Nội dung chữ bên trái */}
             <motion.div
               variants={leftVariants}
               initial="hidden"
               animate={controls}
-              className="text-center md:text-left"
+              className="w-full md:w-1/2 text-center md:text-left"
             >
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight text-white">
-                {content.hero_title_1 || "More"}
-                <span className="text-blue-500">
-                  {content.hero_title_2 || "Revenue"}
-                </span>
-                <br />
-                {content.hero_title_3 || "Less"}{" "}
-                <span className="text-blue-500">
-                  {content.hero_title_4 || "Effort"}
-                </span>
+                <div>
+                  {content.hero_title_1 || "Beyond"}{" "}
+                  <span className="text-blue-500">
+                    {content.hero_title_2 || "Impression"}
+                  </span>
+                </div>
+                <div>
+                  {content.hero_title_3 || "Unlock"}{" "}
+                  <span className="text-blue-500">
+                    {content.hero_title_4 || "Revenue Potential"}
+                  </span>
+                </div>
               </h1>
 
               <p className="mt-6 text-gray-300 text-base sm:text-lg lg:text-xl font-mono whitespace-pre-line">
@@ -212,13 +180,21 @@ export default function Home() {
               </div>
             </motion.div>
 
-            {/* Chừa cột trống cho ảnh ở desktop */}
+            {/* Hình ảnh nằm phải */}
             <motion.div
-              variants={rightVariants}
-              initial="hidden"
-              animate={controls}
-              className="hidden md:block"
-            />
+              initial={{ opacity: 0, x: 60 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
+              className="w-full md:w-1/2"
+            >
+              <div className="overflow-hidden rounded-xl w-full h-full bg-transparent p-0 m-0 border-none">
+                <img
+                  src="/images/hero-4.png"
+                  alt="Hero"
+                  className="w-full h-full object-cover m-0 p-0 border-none"
+                />
+              </div>
+            </motion.div>
           </div>
         </section>
 

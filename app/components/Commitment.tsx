@@ -87,7 +87,7 @@ export default function StatsSection({
     // </section>
 
     <section
-      className="py-10 px-4 md:px-12 bg-[#0f172a] overflow-hidden"
+      className="py-10 px-4 md:px-12 bg-[#022854] overflow-hidden"
       ref={ref}
     >
       <div className="max-w-6xl mx-auto flex flex-wrap justify-center md:justify-between text-center">

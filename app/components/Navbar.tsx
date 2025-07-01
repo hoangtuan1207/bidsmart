@@ -36,7 +36,7 @@ export default function Navbar({
   // }, [inView, controls]);
 
   return (
-    <header className="sticky top-0 w-full h-16 bg-[#0f172a] shadow-sm flex items-center justify-between px-6 lg:px-12 z-50">
+    <header className="sticky top-0 w-full h-16 bg-[#022854] shadow-sm flex items-center justify-between px-6 lg:px-12 z-50">
       {/* Logo */}
       <div className="flex items-center">
         <img
@@ -103,7 +103,7 @@ export default function Navbar({
       </div>
       {/* Mobile menu */}
       {isOpen && (
-        <div className="absolute top-16 left-0 w-full bg-[#0f172a] shadow-md flex flex-col items-start p-6 space-y-4 md:hidden z-40">
+        <div className="absolute top-16 left-0 w-full bg-[#022854] shadow-md flex flex-col items-start p-6 space-y-4 md:hidden z-40">
           <button
             onClick={() => {
               setIsOpen(false);

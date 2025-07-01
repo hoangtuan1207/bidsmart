@@ -71,7 +71,7 @@ export default function Publisher({
 
     <section
       ref={ref}
-      className="py-16 bg-white dark:bg-gray-900 transition-colors duration-300"
+      className="py-16 bg-white dark:bg-[#022854] transition-colors duration-300"
     >
       <div className="max-w-7xl mx-auto px-4">
         <motion.h2

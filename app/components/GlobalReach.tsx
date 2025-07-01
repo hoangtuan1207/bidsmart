@@ -14,7 +14,7 @@ const GlobalReach: FC<GlobalReachProps> = ({ onOpenPopup, content }) => {
   const isInView = useInView(ref, { margin: "-100px" });
 
   return (
-    <section className="bg-[#0e1729] pt-30 pb-10 text-white" ref={ref}>
+    <section className="bg-[#022854] pt-30 pb-10 text-white" ref={ref}>
       <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-12">
         {/* Left: Text Content */}
         <motion.div

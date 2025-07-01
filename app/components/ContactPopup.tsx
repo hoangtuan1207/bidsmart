@@ -14,7 +14,7 @@ export default function ContactPopup({
 
   return (
     <div className="fixed inset-0 z-50 bg-black/70 flex items-center justify-center">
-      <div className="bg-[#0e1729] w-full max-w-2xl rounded-2xl shadow-2xl relative px-6 py-8 sm:px-10 sm:py-10 text-white">
+      <div className="bg-[#022854] w-full max-w-2xl rounded-2xl shadow-2xl relative px-6 py-8 sm:px-10 sm:py-10 text-white">
         {/* Close Button */}
         <button
           onClick={onClose}

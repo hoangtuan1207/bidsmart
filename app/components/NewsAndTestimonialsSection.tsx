@@ -15,12 +15,11 @@ type Props = {
   testimonials: Item[];
 };
 
-// ✅ Hàm kiểm tra nếu content là URL
-function isValidUrl(str: string): boolean {
+function isValidUrl(string: string | URL) {
   try {
-    new URL(str);
+    new URL(string);
     return true;
-  } catch (_) {
+  } catch (err) {
     return false;
   }
 }
@@ -31,7 +30,7 @@ export const NewsAndTestimonialsSection: React.FC<Props> = ({
   testimonials,
 }) => {
   return (
-    <section className="w-full bg-[#0f172a] py-16 px-4">
+    <section className="w-full bg-[#022854] py-16 px-4">
       <div className="max-w-6xl mx-auto">
         <h2 className="text-2xl md:text-3xl font-bold text-center text-white mb-10">
           What's New & People Say
@@ -43,7 +42,7 @@ export const NewsAndTestimonialsSection: React.FC<Props> = ({
             <h3 className="font-semibold text-lg mb-4 text-blue-400">
               📰 {content.title_news}
             </h3>
-            {news.length === 0 ? (
+            {/* {news.length === 0 ? (
               <p className="text-sm text-gray-300">No news available.</p>
             ) : (
               news.map((item) => (
@@ -67,7 +66,22 @@ export const NewsAndTestimonialsSection: React.FC<Props> = ({
                   )}
                 </div>
               ))
-            )}
+            )} */}
+            {news.map((item) => (
+              <div key={item.id} className="mb-4">
+                <h4 className="text-white font-bold text-base mb-1">
+                  {item.title}
+                </h4>
+                <a
+                  href={item.content}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-400 underline text-sm break-all"
+                >
+                  {item.content}
+                </a>
+              </div>
+            ))}
           </div>
 
           {/* Testimonials */}

@@ -48,7 +48,7 @@ export default function ContactForm({ onClose }: { onClose: () => void }) {
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
-      className="max-w-xl w-full p-4 sm:p-6 space-y-6 bg-[#0e1729] text-white rounded-xl shadow-lg"
+      className="max-w-xl w-full p-4 sm:p-6 space-y-6 bg-[#022854] text-white rounded-xl shadow-lg"
     >
       <h2 className="text-3xl font-bold text-center mb-4 text-white">
         🚀 Work with us
@@ -62,7 +62,7 @@ export default function ContactForm({ onClose }: { onClose: () => void }) {
             type="text"
             name="user_name"
             placeholder="Your Name"
-            className="input-style bg-[#1c2a40] border border-gray-600 text-white placeholder-gray-400 pl-14"
+            className="input-style bg-[#022854] border border-gray-600 text-white placeholder-gray-400 pl-14"
             required
           />
         </div>
@@ -74,7 +74,7 @@ export default function ContactForm({ onClose }: { onClose: () => void }) {
             type="email"
             name="user_email"
             placeholder="Your Email"
-            className="input-style bg-[#1c2a40] border border-gray-600 text-white placeholder-gray-400 pl-14"
+            className="input-style bg-[#022854] border border-gray-600 text-white placeholder-gray-400 pl-14"
             required
           />
         </div>
@@ -86,7 +86,7 @@ export default function ContactForm({ onClose }: { onClose: () => void }) {
             type="text"
             name="website"
             placeholder="Website/App URL"
-            className="input-style bg-[#1c2a40] border border-gray-600 text-white placeholder-gray-400 pl-14"
+            className="input-style bg-[#022854] border border-gray-600 text-white placeholder-gray-400 pl-14"
           />
         </div>
 
@@ -97,7 +97,7 @@ export default function ContactForm({ onClose }: { onClose: () => void }) {
             type="text"
             name="whatsapp"
             placeholder="WhatsApp"
-            className="input-style bg-[#1c2a40] border border-gray-600 text-white placeholder-gray-400 pl-14"
+            className="input-style bg-[#022854] border border-gray-600 text-white placeholder-gray-400 pl-14"
           />
         </div>
 
@@ -108,7 +108,7 @@ export default function ContactForm({ onClose }: { onClose: () => void }) {
             type="text"
             name="country"
             placeholder="Country"
-            className="input-style bg-[#1c2a40] border border-gray-600 text-white placeholder-gray-400 pl-14"
+            className="input-style bg-[#022854] border border-gray-600 text-white placeholder-gray-400 pl-14"
           />
         </div>
 
@@ -119,7 +119,7 @@ export default function ContactForm({ onClose }: { onClose: () => void }) {
             type="text"
             name="telegram"
             placeholder="Telegram No."
-            className="input-style bg-[#1c2a40] border border-gray-600 text-white placeholder-gray-400 pl-14"
+            className="input-style bg-[#022854] border border-gray-600 text-white placeholder-gray-400 pl-14"
           />
         </div>
 
@@ -130,7 +130,7 @@ export default function ContactForm({ onClose }: { onClose: () => void }) {
             type="text"
             name="page_views"
             placeholder="Daily Page Views"
-            className="input-style bg-[#1c2a40] border border-gray-600 text-white placeholder-gray-400 pl-14"
+            className="input-style bg-[#022854] border border-gray-600 text-white placeholder-gray-400 pl-14"
           />
         </div>
       </div>

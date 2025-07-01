@@ -59,7 +59,7 @@ export default function PartnerSection({
     // </section>
 
     <section
-      className="py-10 overflow-hidden bg-white dark:bg-[#0f172a]"
+      className="py-10 overflow-hidden bg-white dark:bg-[#022854]"
       ref={ref}
     >
       <div className="max-w-7xl mx-auto px-4">

@@ -97,7 +97,7 @@ const WhyUs: FC<Props> = ({ content }) => {
     //   </div>
     // </section>
 
-  <section className="bg-white dark:bg-gray-900 py-16 px-4 md:px-10 overflow-x-hidden transition-colors duration-300">
+  <section className="bg-white dark:bg-[#022854] py-16 px-4 md:px-10 overflow-x-hidden transition-colors duration-300">
   <div className="max-w-7xl mx-auto">
     <h2 className="text-4xl md:text-5xl font-extrabold mb-14 text-black dark:text-white text-center">
       WHY <span className="text-blue-600 dark:text-blue-400">BidSmart?</span>
