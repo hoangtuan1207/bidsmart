@@ -42,31 +42,6 @@ export const NewsAndTestimonialsSection: React.FC<Props> = ({
             <h3 className="font-semibold text-lg mb-4 text-blue-400">
               📰 {content.title_news}
             </h3>
-            {/* {news.length === 0 ? (
-              <p className="text-sm text-gray-300">No news available.</p>
-            ) : (
-              news.map((item) => (
-                <div key={item.id} className="mb-4">
-                  <h4 className="text-white font-bold text-base mb-1">
-                    {item.title}
-                  </h4>
-                  {isValidUrl(item.content) ? (
-                    <a
-                      href={item.content}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-blue-400 underline text-sm break-all"
-                    >
-                      {item.content}
-                    </a>
-                  ) : (
-                    <p className="text-gray-300 text-sm leading-relaxed">
-                      {item.content}
-                    </p>
-                  )}
-                </div>
-              ))
-            )} */}
             {news.map((item) => (
               <div key={item.id} className="mb-4">
                 <h4 className="text-white font-bold text-base mb-1">

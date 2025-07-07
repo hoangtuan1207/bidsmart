@@ -79,6 +79,11 @@ export default function Home() {
             };
           });
 
+        const customerNames: string[] =
+          data.customer_name_data
+            ?.split("\n")
+            .map((line: string) => line.replace(/^[-•]\s*/, "").trim()) || [];
+
         const testimonialsList: Item[] =
           data.testimonials_data
             ?.split("\n")
@@ -86,7 +91,7 @@ export default function Home() {
               const clean = line.replace(/^[-•]\s*/, "").trim();
               return {
                 id: `testimonial-${index}`,
-                title: `Customer ${index + 1}`,
+                title: customerNames[index] || `Customer ${index + 1}`,
                 content: clean,
               };
             }) || [];
@@ -131,36 +136,35 @@ export default function Home() {
       <div className="flex-grow bg-[#022854] px-6 flex justify-center">
         <section
           ref={heroRef}
-          className="relative w-full px-4 pt-16 pb-24 sm:py-20 md:py-24 overflow-hidden"
+          className="relative w-full px-4 pt-16 pb-24 sm:py-20 md:py-24 overflow-hidden bg-[#022854]"
         >
           {/* Overlay làm tối nền ảnh */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#022854]/90 via-[#022854]/60 to-transparent z-10" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#022854]/95 via-[#022854]/60 to-transparent z-10" />
 
-          {/* Nội dung + hình ảnh */}
-          <div className="relative z-20 max-w-7xl mx-auto flex flex-col md:flex-row items-center md:items-start gap-10">
-            {/* Nội dung chữ bên trái */}
+          <div className="relative z-20 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+            {/* Phần chữ */}
             <motion.div
               variants={leftVariants}
               initial="hidden"
               animate={controls}
-              className="w-full md:w-1/2 text-center md:text-left"
+              className="z-30 text-center md:text-left"
             >
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight text-white">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight text-white space-y-2">
                 <div>
                   {content.hero_title_1 || "Beyond"}{" "}
                   <span className="text-blue-500">
                     {content.hero_title_2 || "Impression"}
                   </span>
                 </div>
-                <div>
-                  {content.hero_title_3 || "Unlock"}{" "}
-                  <span className="text-blue-500">
+                <div className="whitespace-nowrap">
+                  <span>{content.hero_title_3 || "Unlock"} </span>
+                  <span className="text-blue-400">
                     {content.hero_title_4 || "Revenue Potential"}
                   </span>
                 </div>
               </h1>
 
-              <p className="mt-6 text-gray-300 text-base sm:text-lg lg:text-xl font-mono whitespace-pre-line">
+              <p className="mt-6 text-gray-300 text-base sm:text-lg lg:text-xl font-mono">
                 {content.hero_subtitle ||
                   "Publishers, are you ready to maximize earnings with minimal effort? BidSmart offers a full-stack programmatic solution to connect your ad spaces with smarter delivery, higher fill rates, and stronger returns — all automatically."}
               </p>
@@ -172,6 +176,9 @@ export default function Home() {
                 <span className="bg-green-100 text-green-700 text-xs px-3 py-1 rounded-full font-semibold">
                   #SmartFill
                 </span>
+                <span className="bg-orange-500 text-white text-xs px-3 py-1 rounded-full font-semibold">
+                  #Real Time Bidding
+                </span>
               </div>
 
               <div className="mt-8">
@@ -184,84 +191,21 @@ export default function Home() {
               </div>
             </motion.div>
 
-            {/* Hình ảnh nằm phải */}
+            {/* Phần hình ảnh */}
             <motion.div
               initial={{ opacity: 0, x: 60 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, ease: "easeOut" }}
-              className="w-full md:w-1/2"
+              className="z-10 flex justify-center items-center pl-4 md:pl-12 lg:pl-20"
             >
-              <div className="overflow-hidden rounded-xl w-full h-full bg-transparent p-0 m-0 border-none">
-                <img
-                  src="/images/hero-4.png"
-                  alt="Hero"
-                  className="w-full h-full object-cover m-0 p-0 border-none"
-                />
-              </div>
+              <img
+                src="/images/hero-4.png"
+                alt="Hero"
+                className="max-w-full max-h-[500px] object-contain"
+              />
             </motion.div>
           </div>
         </section>
-
-        {/* <section
-          ref={heroRef}
-          className="relative w-full px-4 pt-16 pb-24 sm:py-20 md:py-24 overflow-hidden"
-        >
-          <div
-            className="absolute inset-0 bg-cover bg-center z-0 md:hidden"
-            style={{
-              backgroundImage: "url('/images/hero-3.png')",
-            }}
-          />
-
-          <div className="absolute inset-0 bg-[#0f172a]/80 z-10 md:hidden" />
-
-          <div className="relative z-20 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div className="text-center md:text-left">
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight text-white">
-                {content.hero_title_1 || "More"}{" "}
-                <span className="text-blue-500">
-                  {content.hero_title_2 || "Revenue"}
-                </span>
-                <br />
-                {content.hero_title_3 || "Less"}{" "}
-                <span className="text-blue-500">
-                  {content.hero_title_4 || "Effort"}
-                </span>
-              </h1>
-
-              <p className="mt-6 text-gray-200 text-base sm:text-lg lg:text-xl font-mono whitespace-pre-line">
-                {content.hero_subtitle || "Publishers..."}
-              </p>
-
-              <div className="mt-6 flex flex-wrap gap-3 justify-center md:justify-start">
-                <span className="bg-blue-100 text-blue-700 text-xs px-3 py-1 rounded-full font-semibold">
-                  #AdTech
-                </span>
-                <span className="bg-green-100 text-green-700 text-xs px-3 py-1 rounded-full font-semibold">
-                  #SmartFill
-                </span>
-              </div>
-
-              <div className="mt-8">
-                <button
-                  onClick={() => setShowPopup(true)}
-                  className="bg-blue-600 text-white px-6 py-3 rounded-full font-semibold text-base hover:bg-blue-700 transition"
-                >
-                  Get a Demo
-                </button>
-              </div>
-            </div>
-
-            <div className="hidden md:flex items-center justify-center">
-              <div
-                className="w-full h-[360px] lg:h-[420px] bg-cover bg-center rounded-xl border border-[#0f172a] shadow-lg"
-                style={{
-                  backgroundImage: "url('/images/hero-3.png')",
-                }}
-              />
-            </div>
-          </div>
-        </section> */}
       </div>
 
       <ContactPopup isOpen={showPopup} onClose={() => setShowPopup(false)} />
