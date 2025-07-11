@@ -59,18 +59,26 @@ export default function Home() {
     fetch("/api/landing")
       .then((res) => res.json())
       .then((data) => {
-        console.log("🚀 ~ .then ~ data:", data);
         setContent(data);
 
+        const news_data = `
+        Google: https://www.google.com/,
+        Bing: https://www.bing.com/,
+        Linkedin: https://www.linkedin.com/company/bidsmart102,
+        Programmatic Trending 2025: https://www.linkedin.com/posts/bidsmart102_atlanticventureforum-startupecosystem-innovation-activity-7336552137016938496-oKoT/?utm_source=share&utm_medium=member_desktop&rcm=ACoAACvbdNABeyDl6AywFfBUQsNyWEaImnbqo6Q
+        `;
+
         const newsList: Item[] = (data.news_data || "")
-          .split("-") // Tách theo dấu "-"
-          .map((line: string) => line.trim())
-          .filter((line: any) => line) // Bỏ rỗng
+          .split(",") // Tách chuỗi theo dấu phẩy và newline
+          .map((line: string) => line.trim()) // Loại bỏ khoảng trắng thừa
+          .filter((line: any) => line) // Bỏ các phần tử rỗng
           .map((line: string, index: number) => {
-            // Dùng regex để tách title và URL
-            const match = line.match(/^([^:]+):\s*(https?:\/\/[^\s:]+).*$/);
+            // Sử dụng regex để tách title và URL
+            const match = line.match(
+              /^([^:]+):\s*(https?:\/\/[^\s:]+)(?::\s*(https?:\/\/[^\s]+))?$/
+            );
             const title = match?.[1]?.trim() || `News ${index + 1}`;
-            const url = match?.[2]?.trim() || "";
+            const url = match?.[2]?.trim() || match?.[3]?.trim() || "";
 
             return {
               id: `news-${index}`,
@@ -78,6 +86,25 @@ export default function Home() {
               content: url,
             };
           });
+
+        console.log(newsList);
+
+        // const newsList: Item[] = (data.news_data || "")
+        //   .split(",") // Tách theo dấu "-"
+        //   .map((line: string) => line.trim())
+        //   .filter((line: any) => line) // Bỏ rỗng
+        //   .map((line: string, index: number) => {
+        //     // Dùng regex để tách title và URL
+        //     const match = line.match(/^([^:]+):\s*(https?:\/\/[^\s:]+).*$/);
+        //     const title = match?.[1]?.trim() || `News ${index + 1}`;
+        //     const url = match?.[2]?.trim() || "";
+
+        //     return {
+        //       id: `news-${index}`,
+        //       title,
+        //       content: url,
+        //     };
+        //   });
 
         const customerNames: string[] =
           data.customer_name_data
