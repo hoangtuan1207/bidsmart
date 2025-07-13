@@ -38,12 +38,7 @@ const GlobalReach: FC<GlobalReachProps> = ({ onOpenPopup, content }) => {
             </p>
             <p>
               <span className="font-semibold">📧 Email:</span>{" "}
-              <a
-                href={`mailto:${
-                  content.company_email || "info@bidsmartca.com"
-                }`}
-                className="text-blue-400 font-medium hover:underline"
-              >
+              <a className="text-blue-400 font-medium hover:underline">
                 {content.company_email || "info@bidsmartca.com"}
               </a>
             </p>
