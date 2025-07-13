@@ -29,14 +29,14 @@ export default function ContactForm({ onClose }: { onClose: () => void }) {
       )
       .then(() => {
         alert(
-          "Cám ơn bạn đã quan tâm! Chúng tôi sẽ liên lạc với bạn sớm nhất."
+          "Thank you for your interest. A member of our team will reach out to you shortly."
         );
         formRef.current?.reset();
         onClose();
       })
       .catch((error) => {
         console.error("Send failed:", error);
-        alert("Gửi không thành công. Vui lòng thử lại.");
+        alert("Unable to submit your request. Please try again later.");
       })
       .finally(() => setIsLoading(false));
   };
@@ -48,89 +48,89 @@ export default function ContactForm({ onClose }: { onClose: () => void }) {
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
-      className="max-w-xl w-full p-4 sm:p-6 space-y-6"
+      className="max-w-xl w-full p-4 sm:p-6 space-y-6 bg-[#022854] text-white rounded-xl shadow-lg"
     >
-      <h2 className="text-3xl font-bold text-center text-gray-800 mb-4">
+      <h2 className="text-3xl font-bold text-center mb-4 text-white">
         🚀 Work with us
       </h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {/* Name */}
         <div className="relative w-full">
-          <HiOutlineUser className="absolute left-3 top-1/2 -translate-y-1/2 text-sky-500 text-[18px] pointer-events-none" />
+          <HiOutlineUser className="absolute left-3 top-1/2 -translate-y-1/2 text-sky-400 text-[18px] pointer-events-none" />
           <input
             type="text"
             name="user_name"
             placeholder="Your Name"
-            className="input-style pl-14"
+            className="input-style bg-[#022854] border border-gray-600 text-white placeholder-gray-400 pl-14"
             required
           />
         </div>
 
         {/* Email */}
         <div className="relative w-full">
-          <HiOutlineEnvelope className="absolute left-3 top-1/2 -translate-y-1/2 text-red-500 text-[18px] pointer-events-none" />
+          <HiOutlineEnvelope className="absolute left-3 top-1/2 -translate-y-1/2 text-red-400 text-[18px] pointer-events-none" />
           <input
             type="email"
             name="user_email"
             placeholder="Your Email"
-            className="input-style pl-14"
+            className="input-style bg-[#022854] border border-gray-600 text-white placeholder-gray-400 pl-14"
             required
           />
         </div>
 
         {/* Website */}
         <div className="relative w-full">
-          <HiOutlineGlobeAlt className="absolute left-3 top-1/2 -translate-y-1/2 text-indigo-500 text-[18px] pointer-events-none" />
+          <HiOutlineGlobeAlt className="absolute left-3 top-1/2 -translate-y-1/2 text-indigo-400 text-[18px] pointer-events-none" />
           <input
             type="text"
             name="website"
             placeholder="Website/App URL"
-            className="input-style pl-14"
+            className="input-style bg-[#022854] border border-gray-600 text-white placeholder-gray-400 pl-14"
           />
         </div>
 
         {/* WhatsApp */}
         <div className="relative w-full">
-          <FaWhatsapp className="absolute left-3 top-1/2 -translate-y-1/2 text-green-500 text-[18px] pointer-events-none" />
+          <FaWhatsapp className="absolute left-3 top-1/2 -translate-y-1/2 text-green-400 text-[18px] pointer-events-none" />
           <input
             type="text"
             name="whatsapp"
             placeholder="WhatsApp"
-            className="input-style pl-14"
+            className="input-style bg-[#022854] border border-gray-600 text-white placeholder-gray-400 pl-14"
           />
         </div>
 
         {/* Country */}
         <div className="relative w-full">
-          <HiOutlineMapPin className="absolute left-3 top-1/2 -translate-y-1/2 text-orange-500 text-[18px] pointer-events-none" />
+          <HiOutlineMapPin className="absolute left-3 top-1/2 -translate-y-1/2 text-orange-400 text-[18px] pointer-events-none" />
           <input
             type="text"
             name="country"
             placeholder="Country"
-            className="input-style pl-14"
+            className="input-style bg-[#022854] border border-gray-600 text-white placeholder-gray-400 pl-14"
           />
         </div>
 
         {/* Telegram */}
         <div className="relative w-full">
-          <FaTelegramPlane className="absolute left-3 top-1/2 -translate-y-1/2 text-blue-500 text-[18px] pointer-events-none" />
+          <FaTelegramPlane className="absolute left-3 top-1/2 -translate-y-1/2 text-blue-400 text-[18px] pointer-events-none" />
           <input
             type="text"
             name="telegram"
             placeholder="Telegram No."
-            className="input-style pl-14"
+            className="input-style bg-[#022854] border border-gray-600 text-white placeholder-gray-400 pl-14"
           />
         </div>
 
         {/* Page Views */}
         <div className="relative w-full sm:col-span-2">
-          <HiOutlineChartBar className="absolute left-3 top-1/2 -translate-y-1/2 text-purple-500 text-[18px] pointer-events-none" />
+          <HiOutlineChartBar className="absolute left-3 top-1/2 -translate-y-1/2 text-purple-400 text-[18px] pointer-events-none" />
           <input
             type="text"
             name="page_views"
             placeholder="Daily Page Views"
-            className="input-style pl-14"
+            className="input-style bg-[#022854] border border-gray-600 text-white placeholder-gray-400 pl-14"
           />
         </div>
       </div>
